@@ -20,6 +20,7 @@ var App = React.createClass({
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                   <li><Link to="page">Page</Link></li>
+                  <li><Link to="login">Login</Link></li>
                 </ul>
               </div>
             </div>
@@ -59,10 +60,10 @@ var Login = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<label for="username">User Name: </label>
-				<input type="text" /><br />
-				<label for="password">Password: </label>
-				<input type="password" /><br />
+				<label htmlFor="username">User Name: </label>
+				<input type="text" id="username" /><br />
+				<label htmlFor="password">Password: </label>
+				<input type="password" id="password" /><br />
 				<button>GO!</button>
 			</div>
 		);
@@ -74,6 +75,7 @@ var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
           <Route name="page" path="/page" component={Page} />
+          <Route name="login" path="/login" component={Login} />
           <Route path="*" component={Home}/>
         </Route>
       </Router>
