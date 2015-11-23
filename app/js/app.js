@@ -1,3 +1,7 @@
+import Home from "./home";
+import Page from "./page";
+import Login from "./login";
+
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
@@ -34,42 +38,6 @@ var App = React.createClass({
   }
 });
 
-var Home = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h1>Home</h1>
-        <p>Put your home page here</p>
-      </div>
-    );
-  }
-});
-
-var Page = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h1>Page</h1>
-        <p>Demo another page here</p>
-      </div>
-    );
-  }
-});
-
-var Login = React.createClass({
-	render: function() {
-		return (
-			<div>
-				<label htmlFor="username">User Name: </label>
-				<input type="text" id="username" /><br />
-				<label htmlFor="password">Password: </label>
-				<input type="password" id="password" /><br />
-				<button>GO!</button>
-			</div>
-		);
-	}
-});
-
 // Run the routes
 var routes = (
       <Router>
@@ -81,4 +49,4 @@ var routes = (
       </Router>
 );
 
-ReactDOM.render(routes, document.body);
+ReactDOM.render(routes, document.getElementById('app-content'));
