@@ -10,21 +10,18 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <nav className="navbar navbar-default" role="navigation">
-          <div className="container">
+        <nav className="navbar navbar-inverse" role="navigation">
+          <div className="container-fluid">
               <div className="navbar-header">
-                 <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                   <span className="sr-only">Toggle navigation</span>
-                   <span className="icon-bar"></span>
-                   <span className="icon-bar"></span>
-                   <span className="icon-bar"></span>
-                </button>
-                <a className="navbar-brand" href="/">Beginning</a>
+                <Link className="navbar-brand" to="/">Beginning</Link>
               </div>
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <div>
                 <ul className="nav navbar-nav">
                   <li><Link to="page">Page</Link></li>
-                  <li><Link to="login">Login</Link></li>
+
+                </ul><ul className="nav navbar-nav navbar-right">
+                  <li><Link to="#"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+                  <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
                 </ul>
               </div>
             </div>
