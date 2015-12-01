@@ -2,6 +2,7 @@ import Home from "./home";
 import Profile from "./profile";
 import Register from "./register";
 import Login from "./login";
+import Results from "./results";
 
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
@@ -19,6 +20,7 @@ var App = React.createClass({
               <div>
                 <ul className="nav navbar-nav">
                   <li><Link to="/home">Home</Link></li>
+                  <li><Link to="results">Results</Link></li>
 
                 </ul><ul className="nav navbar-nav navbar-right">
                   <li><Link to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
@@ -43,6 +45,7 @@ var routes = (
           <Route name="profile" path="/profile" component={Profile} />
           <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
+          <Route name="results" path="/results" component={Results} />
           <Route path="*" component={Home}/>
         </Route>
       </Router>
