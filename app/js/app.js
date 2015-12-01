@@ -1,5 +1,6 @@
 import Home from "./home";
-import Page from "./page";
+import Profile from "./profile";
+import Register from "./register";
 import Login from "./login";
 
 var Router = ReactRouter.Router;
@@ -17,10 +18,10 @@ var App = React.createClass({
               </div>
               <div>
                 <ul className="nav navbar-nav">
-                  <li><Link to="page">Page</Link></li>
+                  <li><Link to="/home">Home</Link></li>
 
                 </ul><ul className="nav navbar-nav navbar-right">
-                  <li><Link to="#"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+                  <li><Link to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
                   <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
                 </ul>
               </div>
@@ -39,7 +40,8 @@ var App = React.createClass({
 var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
-          <Route name="page" path="/page" component={Page} />
+          <Route name="profile" path="/profile" component={Profile} />
+          <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
           <Route path="*" component={Home}/>
         </Route>
