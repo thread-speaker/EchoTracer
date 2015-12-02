@@ -2,12 +2,37 @@ import Dashboard from "./dashboard";
 import Profile from "./profile";
 import Register from "./register";
 import Login from "./login";
+import Auth from "./auth";
 
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
 
+var auth = require("./auth.js");
+
 var App = React.createClass({
+  getInitialState: function() {
+    return {
+      // the user is logged in
+      loggedIn: auth.loggedIn()
+    };
+  },
+
+  // callback when user is logged in
+  setStateOnAuth: function(loggedIn) {
+    this.setState({loggedIn:loggedIn});
+  },
+
+  // when the component loads, setup the callback
+  componentWillMount: function() {
+    auth.onChange = this.setStateOnAuth;
+  },
+
+  // logout the user and redirect to home page
+  logout: function(event) {
+    auth.logout();
+    this.history.pushState(null, '/');
+  },
 
   render: function() {
     return (
@@ -29,7 +54,12 @@ var App = React.createClass({
         </nav>
 
         <div className="container">
-          {this.props.children}
+          {this.state.loggedIn
+            ? (<span>
+                {this.props.children}
+              </span>)
+            : <p> Not Logged In! </p>
+          }
         </div>
       </div>
     );
