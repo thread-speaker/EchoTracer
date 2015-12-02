@@ -8,6 +8,7 @@ var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
 
+var styles = require("../css/styles.css")
 var auth = require("./auth.js");
 
 var App = React.createClass({
@@ -45,10 +46,18 @@ var App = React.createClass({
               <div>
                 <ul className="nav navbar-nav">
                   <li><Link to="/dashboard">Dashboard</Link></li>
-                </ul><ul className="nav navbar-nav navbar-right">
-                  <li><Link to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
-                  <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
                 </ul>
+                {this.state.loggedIn
+                  ? (<ul className="nav navbar-nav navbar-right">
+                      <li className="welcome">Hello <span className="welcomeName">{localStorage.name}</span>|</li>
+                      <li><a href="#" onClick={this.logout} className="glyphicon glyphicon-log-out">Logout</a></li>
+                    </ul>)
+                  : (<ul className="nav navbar-nav navbar-right">
+                      <li><Link to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+                      <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
+                    </ul>)
+
+                }
               </div>
             </div>
         </nav>
