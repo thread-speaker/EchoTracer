@@ -1,17 +1,20 @@
 var React = require("react");
+var ReactRouter = require("react-router");
+var History = ReactRouter.History;
+
 import "../css/login-styles.css";
 
 var auth = require("./auth.js");
 
 
 var Register = React.createClass({
+	mixins: [ History ],
 
 	// initial state
 	getInitialState: function() {
 		return {
 		  // there was an error registering
-		  error: false,
-		  message: "Invalid username or password."
+		  message: ""
 		};
 	},
 
@@ -25,10 +28,12 @@ var Register = React.createClass({
 		var password = this.refs.password.value;
 		var passwordConfirm = this.refs.passwordConfirm.value;
 		if (!username || !password || !passwordConfirm) {
-		  return;
+			return this.setState({
+				message: "Please fill out all fields."
+			})
+			return;
 		} else if (password != passwordConfirm) {
 			return this.setState({
-				error: true,
 				message: "Passwords do not match."
 			})
 		}
@@ -36,11 +41,12 @@ var Register = React.createClass({
 		// register via the API
 		auth.register(username, password, function(loggedIn) {
 		  // register callback
-		  if (!loggedIn)
-		    return this.setState({
-		      error: true,
-		      message: "Username already in use."
-		    });
+			if (!loggedIn)
+			    return this.setState({
+			      message: "Username already in use."
+			    });
+			else
+				this.history.pushState(null, "/dashboard");				
 		}.bind(this));
 	},
 
@@ -54,10 +60,7 @@ var Register = React.createClass({
 					<input type="password" placeholder="Password" ref="password"/><br/>
 					<input type="password" placeholder="Confirm Password" ref="passwordConfirm"/><br/>
 					<input className="btn btn-warning" type="submit" value="Register" />
-					{this.state.error 
-						? (<div className="alert">{this.state.message}</div>)
-						: null 
-					}
+					<div className="alert">{this.state.message}</div>
 				</form>
 			</div>
 		);

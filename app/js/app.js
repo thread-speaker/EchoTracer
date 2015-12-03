@@ -11,11 +11,15 @@ var ReactRouter = require("react-router");
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
+var History = ReactRouter.History;
+
 
 var styles = require("../css/styles.css")
 var auth = require("./auth.js");
 
 var App = React.createClass({
+  mixins: [ History ],
+
   getInitialState: function() {
     return {
       // the user is logged in

@@ -2,11 +2,15 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
+var History = ReactRouter.History;
+
 
 import "../css/login-styles.css";
 var auth = require("./auth.js");
 
 var Login = React.createClass({
+	mixins: [ History ],
+
 	// initial state
 	getInitialState: function() {
 		return {
@@ -32,6 +36,8 @@ var Login = React.createClass({
 				return this.setState({
 					error: true
 				});
+			else
+				this.history.pushState(null, "/dashboard");				
 		}.bind(this));
 	},
 
