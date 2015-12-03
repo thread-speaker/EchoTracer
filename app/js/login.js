@@ -1,5 +1,5 @@
 import React from "react";
-import "./login-styles.css";
+import "../css/login-styles.css";
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;

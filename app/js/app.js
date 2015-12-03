@@ -63,12 +63,7 @@ var App = React.createClass({
         </nav>
 
         <div className="container">
-          {this.state.loggedIn
-            ? (<span>
-                {this.props.children}
-              </span>)
-            : <p> Not Logged In! </p>
-          }
+          {this.props.children}
         </div>
       </div>
     );
