@@ -16,7 +16,7 @@ var auth = {
       // on success, store a login token
       success: function(res) {
         localStorage.token = res.token;
-        localStorage.name = res.name;
+        localStorage.username = res.username;
         this.onChange(true);
         if (cb)
           cb(true);
@@ -55,7 +55,7 @@ var auth = {
       success: function(res) {
         // on success, store a login token
         localStorage.token = res.token;
-        localStorage.name = res.name;
+        localStorage.username = res.username;
         this.onChange(true);
         if (cb)
           cb(true);

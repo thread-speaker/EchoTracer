@@ -1,5 +1,8 @@
-import React from "react";
+var React = require("react");
 import "../css/login-styles.css";
+
+var auth = require("./auth.js");
+
 
 var Register = React.createClass({
 
@@ -17,6 +20,7 @@ var Register = React.createClass({
 		// prevent default browser submit
 		event.preventDefault();
 		// get data from form
+		console.log(this.refs);
 		var username = this.refs.username.value;
 		var password = this.refs.password.value;
 		var passwordConfirm = this.refs.passwordConfirm.value;
@@ -46,10 +50,10 @@ var Register = React.createClass({
 			<div>
 				<h2>Register</h2>
 				<form className="registerForm" onSubmit={this.register}>
-					<input type="text" placeholder="Username" ref="username"/><br/>
+					<input type="text" placeholder="Username" ref="username" autoFocus={true} /><br/>
 					<input type="password" placeholder="Password" ref="password"/><br/>
 					<input type="password" placeholder="Confirm Password" ref="passwordConfirm"/><br/>
-					<input className="btn" type="submit" value="Register" />
+					<input className="btn btn-warning" type="submit" value="Register" />
 					{this.state.error 
 						? (<div className="alert">{this.state.message}</div>)
 						: null 

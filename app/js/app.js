@@ -4,6 +4,10 @@ import Register from "./register";
 import Login from "./login";
 import Auth from "./auth";
 
+var React = require("react");
+var ReactDOM = require('react-dom');
+var ReactRouter = require("react-router");
+
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
@@ -49,7 +53,7 @@ var App = React.createClass({
                 </ul>
                 {this.state.loggedIn
                   ? (<ul className="nav navbar-nav navbar-right">
-                      <li className="welcome">Hello <span className="welcomeName">{localStorage.name}</span>|</li>
+                      <li className="welcome">Hello <span className="welcomeName">{localStorage.username}</span>|</li>
                       <li><a href="#" onClick={this.logout} className="glyphicon glyphicon-log-out">Logout</a></li>
                     </ul>)
                   : (<ul className="nav navbar-nav navbar-right">

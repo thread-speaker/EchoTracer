@@ -1,7 +1,7 @@
 {
-  "name": "listomatic-node-mongo",
+  "name": "Profile-Cacher",
   "version": "0.0.0",
-  "description": "listomatic node server with mongo storage",
+  "description": "MongoDB cache of people profiles with geolocations",
   "main": "app.js",
   "dependencies": {
     "bcrypt": "~0.8.3",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.1.21",
-    "babel-loader": "^6.1.0",
+    "babel-loader": "6.1.0",
     "babel-preset-react": "^6.1.18",
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^0.9.1",
@@ -33,4 +33,5 @@
   },
   "author": "Aaron Monson",
   "author": "Curtis Merrell"
+
 }

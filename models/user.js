@@ -46,9 +46,9 @@ userSchema.statics.verifyToken = function(token,cb) {
     }
     User.findOne({username: decoded.username},function(err,user) {
       if (err) {
-	cb(null);
+        cb(null);
       } else {
-	cb(user);
+        cb(user);
       }
     });
   });
