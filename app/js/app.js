@@ -4,14 +4,22 @@ import Register from "./register";
 import Login from "./login";
 import Auth from "./auth";
 
+import { IndexRoute } from 'react-router'
+
 var React = require("react");
 var ReactDOM = require('react-dom');
 var ReactRouter = require("react-router");
+var Navbar = require("react-bootstrap").Navbar;
+var Nav = require("react-bootstrap").Nav;
+var NavItem = require("react-bootstrap").NavItem;
+var NavDropdown = require("react-bootstrap").NavDropdown;
+var MenuItem = require("react-bootstrap").MenuItem;
 
-var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
 var History = ReactRouter.History;
+
+var Router = ReactRouter.Router;
 
 
 var styles = require("../css/styles.css")
@@ -43,32 +51,54 @@ var App = React.createClass({
     this.history.pushState(null, '/');
   },
 
+  getLocation: function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        alert(position.coords.latitude + ", " + position.coords.longitude);
+      });
+    }
+    else {
+      alert("Geolocation lookup failed!");
+    }
+  },
+
+
   render: function() {
     return (
       <div>
-        <nav className="navbar navbar-inverse" role="navigation">
-          <div className="container-fluid">
-              <div className="navbar-header">
-                <Link className="navbar-brand" to="/">Beginning</Link>
-              </div>
-              <div>
-                <ul className="nav navbar-nav">
-                  <li><Link to="/dashboard">Dashboard</Link></li>
-                </ul>
-                {this.state.loggedIn
-                  ? (<ul className="nav navbar-nav navbar-right">
-                      <li className="welcome">Hello <span className="welcomeName">{localStorage.username}</span>|</li>
-                      <li><a href="#" onClick={this.logout} className="glyphicon glyphicon-log-out">Logout</a></li>
-                    </ul>)
-                  : (<ul className="nav navbar-nav navbar-right">
-                      <li><Link to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
-                      <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
-                    </ul>)
-
-                }
-              </div>
-            </div>
-        </nav>
+        <Navbar inverse role="navigation">
+          <Navbar.Header>
+            <Navbar.Brand>
+                <Link className="navbar-brand" to="/">
+                  <span className="logo">
+                    <span className="logoInitial">G</span>eo
+                    <span className="logoInitial">P</span>ro
+                  </span>
+                  <span className="logoTrail">
+                    [file]
+                  </span>
+                </Link>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Navbar.Collapse>
+            {this.state.loggedIn
+              ? ( <Nav pullRight>
+                    <NavItem>Hello </NavItem>
+                    <NavDropdown title={localStorage.username} className="welcomeName" id="basic-nav-dropdown">
+                      <MenuItem ><Link to="profile" className="navDropItem">Profile</Link></MenuItem>
+                      <MenuItem divider />
+                      <MenuItem ><input type="button" onClick={this.getLocation} className="navCacheButton" value="Cache me here" /></MenuItem>
+                    </NavDropdown>
+                    <NavItem>|</NavItem>
+                    <NavItem><a to="dashboard" onClick={this.logout} className="rightNavItem glyphicon glyphicon-log-out"> Logout</a></NavItem>
+                  </Nav>)
+              : ( <Nav pullRight>
+                    <NavItem><Link to="register" className="rightNavItem"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></NavItem>
+                    <NavItem><Link to="login" className="rightNavItem"><span className="glyphicon glyphicon-log-in"></span> Login</Link></NavItem>
+                  </Nav>)
+            }
+          </Navbar.Collapse>
+        </Navbar>
 
         <div className="container">
           {this.props.children}
@@ -82,10 +112,11 @@ var App = React.createClass({
 var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
+          <IndexRoute component={Dashboard} />
           <Route name="profile" path="/profile" component={Profile} />
           <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
-          <Route path="*" component={Dashboard}/>
+          <Route names="dashboard" path="/dashboard" component={Dashboard}/>
         </Route>
       </Router>
 );

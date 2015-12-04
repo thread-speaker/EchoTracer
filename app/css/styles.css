@@ -1,3 +1,22 @@
+.logo {
+	font-size: 22px;
+	color: #00ace6;
+}
+
+.logoInitial{
+	font-size: 26px;
+	font-weight: bold;
+	color: #e67300;
+}
+
+.logoTrail {
+    font-size: 14px;
+    margin-left: 5px;
+    color: white;
+    top: 2px;
+    position: relative;
+}
+
 .welcome {
 	margin-top:15px;
 	font-size:18px;
@@ -5,7 +24,55 @@
 }
 
 .welcomeName {
-	color: white;
-	margin-right: 10px;
-	margin-left: 4px;
+	font-size: 18px;
+	margin-left: -15px;
 }
+
+.rightNavItem {
+	display: inline !important;
+	top: -15px;
+}
+
+.navDivider {
+	margin-right: 8px;
+}
+
+.navDropItem {
+	font-size:18px;
+}
+
+.dashboardMain {
+	float: right;
+	text-align: center;
+	width: 100%;
+}
+
+.cacheButton {
+	background-color: #e67300;
+	width:100%;
+	text-align: center;
+	height:55px;
+	border-radius:7px;
+	border:none;
+	color:black;
+	font-size:36px;
+}
+
+	.cacheButton:hover {
+		background-color: #ffcc99;
+	}
+
+.navCacheButton {
+	background-color: #e67300;
+	width:220px;
+	height:42px;
+	border-radius:4px;
+	border:none;
+	color:black;
+	font-size:24px;
+	margin-bottom:4px;
+}
+
+	.navCacheButton:hover {
+		background-color: #ffcc99;
+	}

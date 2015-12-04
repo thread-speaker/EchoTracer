@@ -27,13 +27,9 @@ var Dashboard = React.createClass({
 	    return (
 			<div>
 				{this.state.loggedIn
-				    ? 	(<span>
-					        <h1>Dashboard</h1>
-				        	<p> Content goes here? </p>
-						<div className="save-location-button">
-							<div className="button" onClick={ this.getLocation }>Save This Location</div>
-						</div>
-					</span>)
+				    ? 	(<span className="dashboardMain">
+							<input type="button" className="cacheButton" onClick={ this.getLocation } value="Cache me here"/>
+						</span>)
 				    : 	(<span>
 				    		<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>
 				    	</span>)
