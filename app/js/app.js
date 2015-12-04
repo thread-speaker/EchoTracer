@@ -4,14 +4,22 @@ import Register from "./register";
 import Login from "./login";
 import Auth from "./auth";
 
+var React = require("react");
+var ReactDOM = require('react-dom');
+var ReactRouter = require("react-router");
+
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
+var History = ReactRouter.History;
+
 
 var styles = require("../css/styles.css")
 var auth = require("./auth.js");
 
 var App = React.createClass({
+  mixins: [ History ],
+
   getInitialState: function() {
     return {
       // the user is logged in
@@ -49,7 +57,7 @@ var App = React.createClass({
                 </ul>
                 {this.state.loggedIn
                   ? (<ul className="nav navbar-nav navbar-right">
-                      <li className="welcome">Hello <span className="welcomeName">{localStorage.name}</span>|</li>
+                      <li className="welcome">Hello <span className="welcomeName">{localStorage.username}</span>|</li>
                       <li><a href="#" onClick={this.logout} className="glyphicon glyphicon-log-out">Logout</a></li>
                     </ul>)
                   : (<ul className="nav navbar-nav navbar-right">
@@ -63,12 +71,7 @@ var App = React.createClass({
         </nav>
 
         <div className="container">
-          {this.state.loggedIn
-            ? (<span>
-                {this.props.children}
-              </span>)
-            : <p> Not Logged In! </p>
-          }
+          {this.props.children}
         </div>
       </div>
     );

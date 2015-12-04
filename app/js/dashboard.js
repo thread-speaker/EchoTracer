@@ -1,4 +1,16 @@
+var React = require("react");
+var ReactRouter = require("react-router");
+var Link = ReactRouter.Link;
+
+var auth = require("./auth.js");
+
 var Dashboard = React.createClass({
+	getInitialState: function() {
+		return {
+			// the user is logged in
+			loggedIn: auth.loggedIn()
+		};
+	},
 
   getLocation: function() {
     if (navigator.geolocation) {
@@ -11,17 +23,21 @@ var Dashboard = React.createClass({
     }
   },
 
-  render: function() {
-    return (
-      <div>
-        <h1>Dashboard</h1>
-        <div className="save-location">
-          <div className="button" onMouseDown={this.getLocation}>Record My Location</div>
-          <p id="location-message">Hello World!</p>
-        </div>
-      </div>
-    );
-  }
+  	render: function() {
+	    return (
+			<div>
+				{this.state.loggedIn
+				    ? 	(<span>
+					        	<h1>Dashboard</h1>
+				        	<p> Content goes here? </p>
+						</span>)
+				    : 	(<span>
+				    		<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>
+				    	</span>)
+				}
+			</div>
+	    );
+	}
 });
 
 export default Dashboard;
