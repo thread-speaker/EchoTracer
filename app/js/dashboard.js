@@ -94,6 +94,7 @@ var Dashboard = React.createClass({
 				    ? 	(
 				    	<span className="dashboardMain">
 				    		{tags}
+				    		<div className="dividerBar" />
 							<input type="button" className="cacheButton" onClick={ this.getLocation } value="Cache me here"/>
 						</span>)
 				    : 	(<span>
@@ -114,7 +115,7 @@ var Tag = React.createClass({
 			}, {
 				shortMessage: "I am not such a short message after all!"
 			}, {
-				shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe?"
+				shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
 			}];
 		return {
 			expanded: false,
@@ -129,12 +130,10 @@ var Tag = React.createClass({
 	render: function() {
 		var tagEntries = []
 		for(var i = 0; i < this.state.tagEntries.length; i++){
-			console.log("Pushed to tagEntries");
 			tagEntries.push(
 					<TagEntry key={"tagEntry" + i} dataSource={ this.state.tagEntries[i] } />
 				);
 		}
-		{console.log(tagEntries.length)}
 		return (
 			<div>
 				{this.state.expanded
@@ -148,7 +147,9 @@ var Tag = React.createClass({
 						)
 				}
 				<div className="tagHeader" onClick={ this.toggleExpand }>{this.props.dataSource.tagName}</div>
-				{this.props.priorityChange}
+				<div className="priorityDiv">
+					{this.props.priorityChange}
+				</div>
 				<br/>
 				{this.state.expanded
 					? (	<span>

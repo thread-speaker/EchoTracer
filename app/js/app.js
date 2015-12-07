@@ -93,8 +93,8 @@ var App = React.createClass({
                     <NavItem onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</NavItem>
                   </Nav>)
               : ( <Nav pullRight>
-                    <NavItem><Link to="register" className="rightNavItem"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></NavItem>
-                    <NavItem><Link to="login" className="rightNavItem"><span className="glyphicon glyphicon-log-in"></span> Login</Link></NavItem>
+                    <NavItem to="register"><span className="glyphicon glyphicon-user"></span> Sign Up</NavItem>
+                    <NavItem to="login"><span className="glyphicon glyphicon-log-in"></span> Login</NavItem>
                   </Nav>)
             }
           </Navbar.Collapse>

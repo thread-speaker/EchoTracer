@@ -54,9 +54,20 @@
 	width: 100%;
 }
 
+.dividerBar {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	border: solid 1px black;
+	clear: both;
+}
+
 .cacheButton {
 	background-color: #e67300;
-	width:100%;
+	width:350px;
+	float: right;
 	text-align: center;
 	height:55px;
 	border-radius:7px;
@@ -90,7 +101,10 @@
 /* region Dashboard */
 
 .tag {
-	width: 100% !important;
+}
+
+.priorityDiv {
+	float:right;
 }
 
 .priorityChange {
@@ -132,7 +146,7 @@
 	}
 
 .tagHeader {
-	width: 90%;
+	min-width: 150px;
 	font-size: 30px;
 	padding-left: 25px;
 	background-color: #e67300;
@@ -149,7 +163,7 @@
 	}
 
 .tagEntry {
-	width: 100%;
+	width: 95%;
 	font-size: 20px;
 	margin-left: 50px;
 	padding: 0 10px 0 10px;
