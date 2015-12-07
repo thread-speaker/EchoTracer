@@ -1,3 +1,5 @@
+/* region NavBar */
+
 .logo {
 	font-size: 22px;
 	color: #00ace6;
@@ -39,6 +41,11 @@
 
 .navDropItem {
 	font-size:18px;
+	width: 100%;
+}
+
+#navProfileItem:hover {
+	background-color: #ffdab3 !important;
 }
 
 .dashboardMain {
@@ -76,3 +83,90 @@
 	.navCacheButton:hover {
 		background-color: #ffcc99;
 	}
+
+/* endregion */
+
+
+/* region Dashboard */
+
+.tag {
+	width: 100% !important;
+}
+
+.priorityChange {
+	margin-right: 5px;
+	margin-left: 5px;
+	height: 36px;
+	margin-bottom: 15px;
+	color: #333333 !important;
+}
+
+	.glyphicon-chevron-up:hover {
+		cursor: pointer;
+		color: #999999;
+	}
+
+	.glyphicon-chevron-down:hover {
+		cursor: pointer;
+		color: #999999;
+	}
+
+.expandable {
+	width:20px;
+	height:20px;
+	border: none;
+	border-radius: 3px;
+	background-color: #e67300;
+	padding-left: 2px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	float: left;
+	clear: left;
+	position: relative;
+	top:12px;
+}
+
+	.expandable:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.tagHeader {
+	width: 90%;
+	font-size: 30px;
+	padding-left: 25px;
+	background-color: #e67300;
+	float: left;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+	.tagHeader:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.tagEntry {
+	width: 100%;
+	font-size: 20px;
+	margin-left: 50px;
+	padding: 0 10px 0 10px;
+	background-color: #00ace6;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 8px;
+	text-align: left;
+}
+
+	.tagEntry:hover {
+		background-color: #99e5ff;
+		cursor: pointer;
+	}
+
+/* endregion*/

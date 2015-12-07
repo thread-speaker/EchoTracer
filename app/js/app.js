@@ -85,12 +85,12 @@ var App = React.createClass({
               ? ( <Nav pullRight>
                     <NavItem>Hello </NavItem>
                     <NavDropdown title={localStorage.username} className="welcomeName" id="basic-nav-dropdown">
-                      <MenuItem ><Link to="profile" className="navDropItem">Profile</Link></MenuItem>
+                      <MenuItem id="navProfileItem" to="profile" className="navDropItem">Profile</MenuItem>
                       <MenuItem divider />
                       <MenuItem ><input type="button" onClick={this.getLocation} className="navCacheButton" value="Cache me here" /></MenuItem>
                     </NavDropdown>
-                    <NavItem>|</NavItem>
-                    <NavItem><a to="dashboard" onClick={this.logout} className="rightNavItem glyphicon glyphicon-log-out"> Logout</a></NavItem>
+                    <NavItem disabled>|</NavItem>                    
+                    <NavItem onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</NavItem>
                   </Nav>)
               : ( <Nav pullRight>
                     <NavItem><Link to="register" className="rightNavItem"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></NavItem>
