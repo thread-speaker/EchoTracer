@@ -11,18 +11,17 @@ var profileSchema = new Schema({
   user: {type: ObjectId, ref: 'users'},
   caches : [{ lat : String, lon : String, placed : {type: Date, default: Date.now} }],
   tags : [{ tag: String, message: String }],
-  title: String,
   joined: {type: Date, default: Date.now},
   lastActivity: {type: Date, default: Date.now},
 });
 
 // ensure schemas use virtual IDs
-profilesSchema.set('toJSON', {
+profileSchema.set('toJSON', {
   virtuals: true
 });
 
 // add findorCreate
-profilesSchema.plugin(findOrCreate);
+profileSchema.plugin(findOrCreate);
 
 // create profile
 var Profile = mongoose.model('profile', profileSchema);

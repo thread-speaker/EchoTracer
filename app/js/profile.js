@@ -8,7 +8,8 @@ var Profile = React.createClass({
 	getInitialState: function() {
 		return {
 			// the user is logged in
-			loggedIn: auth.loggedIn()
+			loggedIn: auth.loggedIn(),
+			profile: auth.getUserProfile()
 		};
 	},
 
@@ -16,10 +17,11 @@ var Profile = React.createClass({
 	    return (
 	      	<div>
 		        {this.state.loggedIn
-		            ? 	(<span>
+		            ? 	(<div>
 			       	        <h1>Dashboard</h1>
 					        <p> Content goes here? </p>
-						</span>)
+						<p>{profile}</p>
+						</div>)
 				    : 	(<span>
 				    		<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>
 				    	</span>)

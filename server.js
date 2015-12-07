@@ -16,7 +16,7 @@ MongoDB.once('open', function() {
 // models
 var api = require('./models/api.js');
 var User = require('./models/user.js');
-var Item = require('./models/item.js');
+var Profile = require('./models/profile.js');
 
 // start the server
 var server = app.listen(3000, function () {
