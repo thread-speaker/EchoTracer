@@ -9,11 +9,16 @@ import { IndexRoute } from 'react-router'
 var React = require("react");
 var ReactDOM = require('react-dom');
 var ReactRouter = require("react-router");
-var Navbar = require("react-bootstrap").Navbar;
-var Nav = require("react-bootstrap").Nav;
-var NavItem = require("react-bootstrap").NavItem;
-var NavDropdown = require("react-bootstrap").NavDropdown;
-var MenuItem = require("react-bootstrap").MenuItem;
+var Bootstrap = require("react-bootstrap");
+var Navbar = Bootstrap.Navbar;
+var Nav = Bootstrap.Nav;
+var NavItem = Bootstrap.NavItem;
+var NavDropdown = Bootstrap.NavDropdown;
+var MenuItem = Bootstrap.MenuItem;
+var RouterBootstrap = require("react-router-bootstrap");
+var LinkContainer = RouterBootstrap.LinkContainer;
+var MenuItemLink = RouterBootstrap.MenuItemLink;
+var NavItemLink = RouterBootstrap.NavItemLink;
 
 var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
@@ -47,8 +52,11 @@ var App = React.createClass({
 
   // logout the user and redirect to home page
   logout: function(event) {
+    console.log("hi");
     auth.logout();
     this.history.pushState(null, '/');
+    Location.reload();
+    console.log("bye");
   },
 
   getLocation: function() {
@@ -85,16 +93,22 @@ var App = React.createClass({
               ? ( <Nav pullRight>
                     <NavItem>Hello </NavItem>
                     <NavDropdown title={localStorage.username} className="welcomeName" id="basic-nav-dropdown">
-                      <MenuItem ><Link to="profile" className="navDropItem">Profile</Link></MenuItem>
+                      <LinkContainer to="profile">
+                        <MenuItem id="navProfileItem" to="profile" className="navDropItem">Profile</MenuItem>
+                      </LinkContainer>
                       <MenuItem divider />
                       <MenuItem ><input type="button" onClick={this.getLocation} className="navCacheButton" value="Cache me here" /></MenuItem>
                     </NavDropdown>
-                    <NavItem>|</NavItem>
-                    <NavItem><a to="dashboard" onClick={this.logout} className="rightNavItem glyphicon glyphicon-log-out"> Logout</a></NavItem>
+                    <NavItem disabled>|</NavItem>                    
+                    <NavItem ><span onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</span></NavItem>
                   </Nav>)
               : ( <Nav pullRight>
-                    <NavItem><Link to="register" className="rightNavItem"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></NavItem>
-                    <NavItem><Link to="login" className="rightNavItem"><span className="glyphicon glyphicon-log-in"></span> Login</Link></NavItem>
+                    <LinkContainer to="register">
+                      <NavItem ><span className="glyphicon glyphicon-user"></span> Sign Up</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="login">
+                      <NavItem ><span className="glyphicon glyphicon-log-in"></span> Login</NavItem>
+                    </LinkContainer>
                   </Nav>)
             }
           </Navbar.Collapse>

@@ -1,3 +1,5 @@
+/* region NavBar */
+
 .logo {
 	font-size: 22px;
 	color: #00ace6;
@@ -39,6 +41,11 @@
 
 .navDropItem {
 	font-size:18px;
+	width: 100%;
+}
+
+#navProfileItem:hover {
+	background-color: #ffdab3 !important;
 }
 
 .dashboardMain {
@@ -46,21 +53,6 @@
 	text-align: center;
 	width: 100%;
 }
-
-.cacheButton {
-	background-color: #e67300;
-	width:100%;
-	text-align: center;
-	height:55px;
-	border-radius:7px;
-	border:none;
-	color:black;
-	font-size:36px;
-}
-
-	.cacheButton:hover {
-		background-color: #ffcc99;
-	}
 
 .navCacheButton {
 	background-color: #e67300;
@@ -76,3 +68,122 @@
 	.navCacheButton:hover {
 		background-color: #ffcc99;
 	}
+
+/* endregion */
+
+
+/* region Dashboard */
+
+.tag {
+}
+
+.priorityDiv {
+	float:right;
+}
+
+.priorityChange {
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-top: 10px;
+	height: 36px;
+	margin-bottom: 15px;
+	color: #333333 !important;
+}
+
+	.glyphicon-chevron-up:hover {
+		cursor: pointer;
+		color: #999999;
+	}
+
+	.glyphicon-chevron-down:hover {
+		cursor: pointer;
+		color: #999999;
+	}
+
+.expandable {
+	width:20px;
+	height:20px;
+	border: none;
+	border-radius: 3px;
+	background-color: #e67300;
+	padding-left: 2px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	float: left;
+	clear: left;
+	position: relative;
+	top:22px;
+}
+
+	.expandable:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.tagHeader {
+	min-width: 150px;
+	font-size: 30px;
+	padding-left: 25px;
+	background-color: #e67300;
+	float: left;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+	.tagHeader:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.tagEntry {
+	width: 95%;
+	font-size: 20px;
+	margin-left: 50px;
+	padding: 0 10px 0 10px;
+	background-color: #00ace6;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 8px;
+	text-align: left;
+}
+
+	.tagEntry:hover {
+		background-color: #99e5ff;
+		cursor: pointer;
+	}
+
+.dividerBar {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	border: solid 1px black;
+	clear: both;
+}
+
+.cacheButton {
+	background-color: #e67300;
+	width:350px;
+	float: right;
+	text-align: center;
+	height:55px;
+	border-radius:7px;
+	border:none;
+	color:black;
+	font-size:36px;
+	margin-bottom: 30px;
+}
+
+	.cacheButton:hover {
+		background-color: #ffcc99;
+	}
+
+/* endregion*/
