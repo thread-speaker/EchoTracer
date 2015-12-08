@@ -75,7 +75,7 @@ var App = React.createClass({
         <Navbar inverse role="navigation">
           <Navbar.Header>
             <Navbar.Brand>
-              <LinkContainer to="dashboard">          
+              <Link to="dashboard">
                 <span className="logoMain">
                   <span className="logo">
                     <span className="logoInitial">G</span>eo
@@ -85,9 +85,9 @@ var App = React.createClass({
                     [file]
                   </span>
                 </span>
-              </LinkContainer>
+              </Link>
             </Navbar.Brand>
-        </Navbar.Header>
+          </Navbar.Header>
           <Navbar.Collapse>
             {this.state.loggedIn
               ? ( <Nav pullRight>

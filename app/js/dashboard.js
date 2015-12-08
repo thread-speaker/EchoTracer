@@ -148,7 +148,7 @@ var Dashboard = React.createClass({
 
 
   	render: function() {
-  		console.log("re-rendered");
+  		console.log("hi");
 		var tags = [];
 		for(var i = 0; i < this.state.tags.length; i++){
 			var priorityChangers = (
@@ -162,7 +162,6 @@ var Dashboard = React.createClass({
 					<Tag dataSource={this.state.tags[i]} key={"tag" + i} expanded={this.state.expansionState[i]} index={i} onExpandChange={ this.expandChange } priorityChange={priorityChangers} />
 				);
 		}
-		console.log(this.state.tags);
 
 	    return (
 			<div>
