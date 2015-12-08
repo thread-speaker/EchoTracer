@@ -101,9 +101,11 @@ var Dashboard = React.createClass({
 										var cache = p.caches[j];
 										var lat = parseFloat(cache.lat);
 										var lon = parseFloat(cache.lon);
+										var myLat = parseFloat(myPos.latitude);
+										var myLon = parseFloat(myPos.longitude);
 
 										//5 meter default for easy testing
-										if(api.distanceBetween(myPos.latitude, myPos.longitude, lat, lon) <= 5){
+										if(api.distanceBetween(myLat, myLon, lat, lon) <= 5){
 											//store the profile and the date this cache was placed
 											closeProfiles.push({
 												profile: p,
@@ -161,8 +163,9 @@ var Dashboard = React.createClass({
 					cb(result);
 				}
 			});
-			if(cb) {
-				cb(result);
+		} else {
+			if (cb) {
+				cb(null);
 			}
 		}
 	},

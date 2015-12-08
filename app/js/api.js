@@ -93,7 +93,7 @@ var api = {
   },
 
   numToRad: function(number) {
-    var rad = number * (Math.pi/180);
+    var rad = number * (3.1415/180);
     return rad;
   },
 };
