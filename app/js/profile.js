@@ -4,6 +4,7 @@ var Link = ReactRouter.Link;
 
 var auth = require("./auth.js");
 var api = require("./api.js");
+var jquery = require("jquery");
 
 var Tags = React.createClass({
 	saveTag: function() {

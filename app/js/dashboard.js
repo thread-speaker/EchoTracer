@@ -10,142 +10,158 @@ var auth = require("./auth.js");
 
 var Dashboard = React.createClass({
 	getInitialState: function() {
-		var hardArray = [{
-				tagName: "foo",
-				tagEntries: [{
-					author: "dabok",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "Hi!"
-				}, {
-					author: "p3",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "Hello!"					
-				}]
-			}, {
-				tagName: "really long tag name",
-				tagEntries: [{
-					author: "thread",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "I am not such a short message after all!"
-				}, {
-					author: "longUsername",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
-				}]
-			}, {
-				tagName: "smash",
-				tagEntries: [{
-					author: "dabok",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "Hi!"
-				}, {
-					author: "p3",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "Hello!"					
-				}]
-			}, {
-				tagName: "bros",
-				tagEntries: [{
-					author: "thread",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "I am not such a short message after all!"
-				}, {
-					author: "longUsername",
-					dateCached: "Dec. 7, 2015",
-					shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
-				}]
-			}];
-
-		//User's profile for comparisons
-		var myProfile = {};
-		api.getUserProfile(function(status, data){
-			if(status) {
-				myProfile = data.profile
-			}
-		});
-
-		//prep position and tags for proximity/tag comparison
-		var myPos = this.getLocation().coords;
-		var myTags = [];
-		for(var i = 0; i < myProfile.tags.length; i++){
-			myTags.push({
-				tagName: myProfile.tags[i].tag,
-				tagEntries: []
-			});
-		}
-
-		api.getAllProfiles(function(status, data){
-			if(status){
-				var profiles = data.profiles;
-				
-				//find all profiles with a cache in range
-				var closeProfiles = [];
-				for(var i = 0; i < profiles.length; i++){
-					var p = profiles[i];
-					if(p.user === myProfile.user)
-						continue;
-					
-					//iterate over caches backwards to get most recent cache
-					for(var j = p.caches.length - 1; j >= 0; j--){ 
-						var cache = p.caches[j];
-						var lat = parseFloat(cache.lat);
-						var lon = parseFloat(cache.lon);
-
-						//5 meter default for easy testing
-						if(api.distanceBetween(myPos.latitude, myPos.longitude, lat, lon) <= 5){
-							//store the profile and the date this cache was placed
-							closeProfiles.push({
-								profile: p,
-								date: cache.placed
-							});
-							break;
-						}
-					}
-				}
-
-				//build tags+tagEntries for each closeProfile
-				for(var i = 0; i < closeProfiles.length; i++){
-					var p = closeProfiles[i];
-
-					for(var j = 0; j < p.profile.tags.length; j++){
-						var tagName = p.profile.tags[i].tag;
-
-						if(myTags.indexOf(tagName) > 0){
-							myTags[myTags.indexOf(tagName)].tagEntries.push({
-								author: p.profile.username,
-								message: p.profile.tags[i].message,
-								date: p.date
-							})
-						}
-					}
-				}
-			}
-		});
+		// var hardArray = [{
+		// 		tagName: "foo",
+		// 		tagEntries: [{
+		// 			author: "dabok",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "Hi!"
+		// 		}, {
+		// 			author: "p3",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "Hello!"					
+		// 		}]
+		// 	}, {
+		// 		tagName: "really long tag name",
+		// 		tagEntries: [{
+		// 			author: "thread",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "I am not such a short message after all!"
+		// 		}, {
+		// 			author: "longUsername",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
+		// 		}]
+		// 	}, {
+		// 		tagName: "smash",
+		// 		tagEntries: [{
+		// 			author: "dabok",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "Hi!"
+		// 		}, {
+		// 			author: "p3",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "Hello!"					
+		// 		}]
+		// 	}, {
+		// 		tagName: "bros",
+		// 		tagEntries: [{
+		// 			author: "thread",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "I am not such a short message after all!"
+		// 		}, {
+		// 			author: "longUsername",
+		// 			dateCached: "Dec. 7, 2015",
+		// 			shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
+		// 		}]
+		// 	}];
+		var loginOK = auth.loggedIn();
 
 
-		var expansionStateInit = [];
-		for(var i = 0; i < tagArray.length; i++){
-			expansionStateInit.push(true);
-		}
+		if(loginOK) {
+			this.getProximityTags();
+		} 
 
 		return {
-			loggedIn: auth.loggedIn(),
-			tags: tagArray,
-			expansionState: expansionStateInit
+			loggedIn: loginOK,
+			tags: [],
+			expansionState: []
 		};
 	},
 
-	getLocation: function() {
+	getProximityTags: function() {
+					//User's profile for comparisons
+			var myProfile = {};
+			api.getUserProfile(function(status, data){
+				if(status) {
+					myProfile = data.profile
+					//prep position and tags for proximity/tag comparison
+					this.getLocation(function(myPos){
+						var myTags = [];
+						for(var i = 0; i < myProfile.tags.length; i++){
+							myTags.push({
+								tagName: myProfile.tags[i].tag,
+								tagEntries: []
+							});
+						}
+
+						api.getAllProfiles(function(status, data){
+							if(status){
+								var profiles = data.profiles;
+								
+								//find all profiles with a cache in range
+								var closeProfiles = [];
+								for(var i = 0; i < profiles.length; i++){
+									var p = profiles[i];
+									if(p.user === myProfile.user)
+										continue;
+									
+									//iterate over caches backwards to get most recent cache
+									for(var j = p.caches.length - 1; j >= 0; j--){ 
+										var cache = p.caches[j];
+										var lat = parseFloat(cache.lat);
+										var lon = parseFloat(cache.lon);
+
+										//5 meter default for easy testing
+										if(api.distanceBetween(myPos.latitude, myPos.longitude, lat, lon) <= 5){
+											//store the profile and the date this cache was placed
+											closeProfiles.push({
+												profile: p,
+												date: cache.placed
+											});
+											break;
+										}
+									}
+								}
+
+								//build tags+tagEntries for each closeProfile
+								for(var i = 0; i < closeProfiles.length; i++){
+									var p = closeProfiles[i];
+
+									for(var j = 0; j < p.profile.tags.length; j++){
+										var tagName = p.profile.tags[i].tag;
+
+										if(myTags.indexOf(tagName) > 0){
+											myTags[myTags.indexOf(tagName)].tagEntries.push({
+												author: p.profile.username,
+												message: p.profile.tags[i].message,
+												date: p.date
+											})
+										}
+									}
+								}
+
+								var expansionStateInit = [];
+								for(var i = 0; i < myTags.length; i++){
+									expansionStateInit.push(true);
+								}
+
+								this.setState({
+									loggedIn: auth.loggedIn(),
+									tags: myTags,
+									expansionState: expansionStateInit
+								})
+							}
+						}.bind(this));
+					}.bind(this));
+				}
+			}.bind(this));
+	},
+
+	getLocation: function(cb) {
 		if (navigator.geolocation) {
+			var result = {};
 			navigator.geolocation.getCurrentPosition(function(position) {
-				return {
+				result = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude,
 					coords: position.coords
 				};
 			});
+			if(cb) {
+				cb(result);
+			}
 		}
-		return null;
 	},
 
 	saveCache: function() {
@@ -248,7 +264,7 @@ var Dashboard = React.createClass({
 				    	<span className="dashboardMain">
 				    		{tags}
 				    		<div className="dividerBar" />
-							<input type="button" className="cacheButton" onClick={ this.getLocation } value="Cache me here"/>
+							<input type="button" className="cacheButton" onClick={ this.saveCache } value="Cache me here"/>
 						</span>)
 				    : 	(<span>
 				    		<Link to="login" className="buttonDefault">Login</Link> or <Link to="register" className="buttonAlt">Register</Link>

@@ -23,7 +23,6 @@ var Register = React.createClass({
 		// prevent default browser submit
 		event.preventDefault();
 		// get data from form
-		console.log(this.refs);
 		var username = this.refs.username.value;
 		var password = this.refs.password.value;
 		var passwordConfirm = this.refs.passwordConfirm.value;
