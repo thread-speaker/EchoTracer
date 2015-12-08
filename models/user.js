@@ -35,23 +35,19 @@ userSchema.statics.generateToken = function(username) {
 // Verify the token from a client. Call the callback with a user object if successful or null otherwise.
 userSchema.statics.verifyToken = function(token,cb) {
   if (!token) {
-console.log('no token');
     cb(null);
     return;
   }
   // decrypt the token and verify that the encoded user id is valid
   jwt.verify(token, SECRET, function(err, decoded) {
     if (!decoded) {
-console.log('not decoded');
       cb(null);
       return;
     }
     User.findOne({username: decoded.username},function(err,user) {
       if (err) {
-console.log('error on user lookup');
         cb(null);
       } else {
-console.log('all good');
         cb(user);
       }
     });

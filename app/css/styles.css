@@ -5,6 +5,10 @@
 	color: #1ac5ff;
 }
 
+.logoMain:hover {
+	cursor: pointer;
+}
+
 .logoInitial{
 	font-size: 26px;
 	font-weight: bold;
@@ -46,6 +50,7 @@
 
 #navProfileItem:hover {
 	background-color: #ffdab3 !important;
+	color: black !important;
 }
 
 .dashboardMain {

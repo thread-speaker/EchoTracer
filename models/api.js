@@ -70,13 +70,15 @@ app.get('/api/profile', function (req,res) {
   user = User.verifyToken(req.headers.authorization, function(user) {
     if (user) {
       // if the token is valid, find the user's profile and return it
-      Profile.find({user:user.id}, function(err, profile) {
+      Profile.find({user:user.id}, function(err, profiles) {
 	if (err) {
 	  res.sendStatus(403);
 	  return;
 	}
-	// return value is the list of user's profiles. They only have one, and this code could be streamlined...
-	res.json({profile: profile});
+	if (profiles.length > 0) {
+          // return value is the list of user's profiles. They only have one, and this code could be streamlined...
+          res.json({profile: profiles[0]});
+        }
       });
     } else {
       res.sendStatus(403);
@@ -109,32 +111,50 @@ app.get('/api/profile/:user_id', function (req,res) {
   });
 });
 
-// update a profile
-app.put('/api/profile/:profile_id', function (req,res) {
+// get all profiles, for searching
+app.get('/api/profile/all', function (req,res) {
   // validate the supplied token
   user = User.verifyToken(req.headers.authorization, function(user) {
     if (user) {
       // if the token is valid, then find the requested profile
-      Profile.findById(req.params.profile_id, function(err,profile) {
+      Profile.find(function(err, profiles) {
 	if (err) {
 	  res.sendStatus(403);
 	  return;
 	}
-        // update the profile if it belongs to the user, otherwise return an error
-        if (profile.user != user.id) {
-          res.sendStatus(403);
+        // return value is the profile as JSON
+        res.json({profiles:profiles});
+      });
+    } else {
+      res.sendStatus(403);
+    }
+  });
+});
+
+// update a profile
+app.put('/api/profile', function (req,res) {
+  // validate the supplied token
+  user = User.verifyToken(req.headers.authorization, function(user) {
+    if (user) {
+      // if the token is valid, then find the requested profile
+      Profile.find({user:user.id}, function(err,profiles) {
+	if (err) {
+	  res.sendStatus(403);
 	  return;
+	}
+	if (profiles.length > 0) {
+	  foundProfile = profiles[0];
+          foundProfile.caches = req.body.profile.caches;
+          foundProfile.tags = req.body.profile.tags;
+          foundProfile.save(function(err) {
+            if (err) {
+              res.sendStatus(403);
+              return;
+            }
+            // return value is the profile as JSON
+            res.json({profile:foundProfile});
+          });
         }
-        profile.caches = req.body.profile.caches;
-        profile.tags = req.body.profile.tags;
-        profile.save(function(err) {
-	  if (err) {
-	    res.sendStatus(403);
-	    return;
-	  }
-          // return value is the profile as JSON
-          res.json({profile:profile});
-        });
       });
     } else {
       res.sendStatus(403);
