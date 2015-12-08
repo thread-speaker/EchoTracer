@@ -1,14 +1,23 @@
 
 # Geolocation Profiler
 
-Run in node.js; Built using ReactJS components and a MongoDB database
+--Description
+
+## Database Schema
+
+## Future Features
 
 ## Setup
 
-First install mongodb on your host machine:
-https://docs.mongodb.org/manual/installation/
+GeoProfile is run in node.js; Built using ReactJS components and a MongoDB database.
 
-Once mongodb is working, clone the repository. Open a terminal and navigate to the new repository location (i.e. home/360app), then run:
+First install mongodb, node.js, and ReactJS (from node package manager) on your host machine:
+MongoDB: https://docs.mongodb.org/manual/installation/
+Node.js: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server
+Node Package Manager: https://www.npmjs.com/package/npm
+ReactJS: http://reactjs.net/getting-started/download.html
+
+Once all of the above are working, clone the repository. Open a terminal and navigate to the new repository location (i.e. home/360app), then run:
 
 ```
 npm install
