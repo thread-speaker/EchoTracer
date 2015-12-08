@@ -58,7 +58,7 @@ var api = {
         profile: {
           caches: item.caches,
           tags: item.tags
-	}
+        }
       }),
       type: 'PUT',
       headers: {'Authorization': localStorage.token},
@@ -74,27 +74,6 @@ var api = {
       }
     });
   },
-
-  // delete an item, call the callback when complete
-  deleteItem: function(item, cb) {
-    var url = "/api/items/" + item.id;
-    $.ajax({
-      url: url,
-      type: 'DELETE',
-      headers: {'Authorization': localStorage.token},
-      success: function(res) {
-        if (cb)
-          cb(true, res);
-      },
-      error: function(xhr, status, err) {
-        // if there is an error, remove any login token
-        delete localStorage.token;
-        if (cb)
-          cb(false, status);
-      }
-    });
-  }
-
 };
 
 module.exports = api;

@@ -10,7 +10,7 @@ var auth = require("./auth.js");
 
 var Dashboard = React.createClass({
 	getInitialState: function() {
-		var tagArray = [{
+		var hardArray = [{
 				tagName: "foo",
 				tagEntries: [{
 					author: "dabok",
@@ -55,6 +55,35 @@ var Dashboard = React.createClass({
 					shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
 				}]
 			}];
+
+		var myTags = [];
+		api.getUserProfile(function(status, data){
+			if(status){
+				var profile = data.profile
+				myTags = profile.tags;
+			}
+		});
+
+
+		var tagArray = [];
+		api.getAllProfiles(function(status, data){
+			if(status){
+				profiles = data.profiles;
+				
+				//find all profiles with a cache in range
+				closeProfiles = [];
+				for(var i = 0; i < profiles.length; i++){
+
+				}
+
+				//build tags+tagEntries for each closeProfile
+				closeProfiles = profiles; //temp code
+				for(var i = 0; i < closeProfiles.length; i++){
+					
+				}
+			}
+		});
+
 
 		var expansionStateInit = [];
 		for(var i = 0; i < tagArray.length; i++){
