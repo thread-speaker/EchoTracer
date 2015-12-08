@@ -26,7 +26,8 @@ app.post('/api/users/register', function (req, res) {
 	  res.sendStatus("403");
 	  return;
 	}
-	Profile.create({caches:[],tags:[],user:user.id}, function(err,profile) {
+  console.log(req.body.username);
+	Profile.create({username:req.body.username,caches:[],tags:[],user:user.id}, function(err,profile) {
 		if (err) {
 			res.sendStatus(403);
 			return;

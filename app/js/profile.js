@@ -96,7 +96,6 @@ var Profile = React.createClass({
 
 	saveProfile: function() {
 		var caches = this.state.profile.caches;
-		console.log(caches);
 		for (var i = 0; i < caches.length; i++) {
 			caches[i].nickname = document.getElementById("cache"+i).value || caches[i].nickname;
 		}
@@ -116,16 +115,16 @@ var Profile = React.createClass({
 	      	<div>
 		        {this.state.loggedIn
 		            ? 	(<div>
-			       	        <h1 className="profileHeader">User name here</h1>
-						{this.state.profile?
-							<div>
-								<Tags list={this.state.profile.tags} addTag={this.addTag} />
-								<Caches list={this.state.profile.caches} />
-								<div onClick={this.saveProfile} className="profileButton buttonDefault">Save</div>
-							</div>
-						:
-							<p>"loading..."</p>
-						}
+		            		{this.state.profile?
+		            			<div>
+				       	        	<h1 className="profileHeader">{this.state.profile.username}</h1>
+									<Tags list={this.state.profile.tags} addTag={this.addTag} />
+									<Caches list={this.state.profile.caches} />
+									<div onClick={this.saveProfile} className="profileButton buttonDefault">Save</div>
+								</div>
+							:
+								<p>"loading..."</p>
+							}
 						</div>)
 				    : 	(<span>
 				    		<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>

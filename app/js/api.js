@@ -56,6 +56,7 @@ var api = {
       contentType: 'application/json',
       data: JSON.stringify({
         profile: {
+          username: item.username,
           caches: item.caches,
           tags: item.tags
         }
