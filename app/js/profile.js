@@ -47,11 +47,10 @@ var Caches = React.createClass({
 			showList.push(
 				<li key={"cacheList"+i}>
 					<div>
+						<span>Nickname: </span>
+						<input id={'cache'+i} placeholder={this.props.list[i].nickname || 'nickname'} className="cacheNameInput"></input>
 						{this.props.list[i].lat}, 
 						{this.props.list[i].lon}
-					</div>
-					<div>
-						<input id={'cache'+i} placeholder={this.props.list[i].nickname || 'nickname'}></input>
 					</div>
 				</li>);
 		}

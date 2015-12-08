@@ -68,14 +68,18 @@ var Dashboard = React.createClass({
 		};
 	},
 
-	getLocation: function() {
+	getLocation: function(cb) {
 		if (navigator.geolocation) {
+			var result = {};
 			navigator.geolocation.getCurrentPosition(function(position) {
-				return {
+				result = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude,
 					coords: position.coords
 				};
+				if (cb) {
+					cb(result);
+				}
 			});
 		}
 		return null;

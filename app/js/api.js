@@ -78,10 +78,10 @@ var api = {
 
   distanceBetween: function(lat1, lon1, lat2, lon2) {
     var R = 6371000; // metres
-    var phi1 = lat1.toRadians();
-    var phi2 = lat2.toRadians();
-    var deltaPhi = (lat2-lat1).toRadians();
-    var deltaLambda = (lon2-lon1).toRadians();
+    var phi1 = this.numToRad(lat1);
+    var phi2 = this.numToRad(lat2);
+    var deltaPhi = this.numToRad(lat2-lat1);
+    var deltaLambda = this.numToRad(lon2-lon1);
 
     var a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) +
           Math.cos(phi1) * Math.cos(phi2) *
@@ -90,6 +90,11 @@ var api = {
 
     var d = R * c;
     return d;
+  },
+
+  numToRad: function(number) {
+    var rad = number * (Math.pi/180);
+    return rad;
   },
 };
 
