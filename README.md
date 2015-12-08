@@ -1,5 +1,7 @@
 
-# GeoProfile cache service run in Node.js; built using ReactJS; data stored in a mongodb database.
+# Geolocation Profiler
+
+Run in node.js; Built using ReactJS components and a MongoDB database
 
 ## Setup
 
