@@ -76,10 +76,10 @@ var Dashboard = React.createClass({
 					longitude: position.coords.longitude,
 					coords: position.coords
 				};
-			}
+			});
 		}
 		return null;
-	}
+	},
 
 	saveCache: function() {
 		if (navigator.geolocation) {

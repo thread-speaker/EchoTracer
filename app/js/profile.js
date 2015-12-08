@@ -116,8 +116,8 @@ var Profile = React.createClass({
 		        {this.state.loggedIn
 		            ? 	(<div>
 		            		{this.state.profile?
-				       	        <h1 className="profileHeader">this.state.profile.username</h1>
-								<div>
+		            			<div>
+				       	        	<h1 className="profileHeader">{this.state.profile.username}</h1>
 									<Tags list={this.state.profile.tags} addTag={this.addTag} />
 									<Caches list={this.state.profile.caches} />
 									<div onClick={this.saveProfile} className="profileButton buttonDefault">Save</div>
