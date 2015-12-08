@@ -52,11 +52,9 @@ var App = React.createClass({
 
   // logout the user and redirect to home page
   logout: function(event) {
-    console.log("hi");
     auth.logout();
     this.history.pushState(null, '/');
     Location.reload();
-    console.log("bye");
   },
 
   getLocation: function() {
