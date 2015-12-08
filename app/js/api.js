@@ -59,7 +59,7 @@ var api = {
           username: item.username,
           caches: item.caches,
           tags: item.tags
-	}
+        }
       }),
       type: 'PUT',
       headers: {'Authorization': localStorage.token},

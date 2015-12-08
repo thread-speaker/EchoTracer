@@ -88,7 +88,7 @@ app.get('/api/profile', function (req,res) {
 });
 
 // get a profile
-app.get('/api/profile/:user_id', function (req,res) {
+app.get('/api/profile/user/:user_id', function (req,res) {
   // validate the supplied token
   user = User.verifyToken(req.headers.authorization, function(user) {
     if (user) {
