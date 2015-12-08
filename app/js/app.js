@@ -54,7 +54,7 @@ var App = React.createClass({
   logout: function(event) {
     auth.logout();
     this.history.pushState(null, '/');
-    Location.reload();
+    location.reload();
   },
 
   getLocation: function() {
