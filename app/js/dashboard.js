@@ -79,7 +79,6 @@ var Dashboard = React.createClass({
 						nickname: "",
 					};
 					var profile = data.profile;
-					console.log(profile);
 					profile.caches.push(newCache);
 					while(profile.caches.length > 5) {
 						profile.shift();

@@ -289,3 +289,66 @@
 	}
 
 /* endregion*/
+
+/* region profile */
+.profileHeader {
+	color: #e67300;
+	display: block;
+}
+
+.profileListContainer {
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.profileList {
+	list-style-type: none;
+	padding: 0px;
+}
+
+.profileList > li {
+	background-color: #1ac5ff;
+	border-radius: 7px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.profileTagName {
+	display: inline-block;
+}
+
+.profileTagMessage {
+	padding-left: 5px;
+	display: inline-block;
+}
+
+.profileAddTag {
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
+.profileAddTagButton {
+	display: inline-block;
+	background-color: #e67300;
+	padding: 5px;
+	border-radius: 7px;
+	width: 25%;
+	float: right;
+	text-align: center;
+}
+
+.profileCaches {
+	background-color: #1ac5ff;
+	border-radius: 7px;
+	color: black;
+}
+
+.profileButton {
+	background-color: #e67300;
+	border-radius: 7px;
+	float: left;
+	text-align: center;
+	margin-left: 15px;
+}
+/* endregion */

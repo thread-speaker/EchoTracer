@@ -79,10 +79,7 @@ var App = React.createClass({
                 <span className="logoMain">
                   <span className="logo">
                     <span className="logoInitial">G</span>eo
-                    <span className="logoInitial">P</span>ro
-                  </span>
-                  <span className="logoTrail">
-                    [file]
+                    <span className="logoInitial">P</span>rofile
                   </span>
                 </span>
               </Link>

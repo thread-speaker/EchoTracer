@@ -22,32 +22,25 @@ var Tags = React.createClass({
 	render: function() {
 		var showList = [];
 		for (var i = 0; i < this.props.list.length; i++) {
-			showList.push(<li key={"tagList"+i}><div>{this.props.list[i].tag}</div><div>{this.props.list[i].message}</div></li>);
+			showList.push(<li key={"tagList"+i}><div className="profileTagName">{this.props.list[i].tag}</div>:<div className="profileTagMessage">{this.props.list[i].message}</div></li>);
 		}
 
-		return (<div>
-				<ul>
-					{showList}
-				</ul>
-				<div><input type="text" id="newTag" placeholder="Add a new tag"></input><input type="text" id="newMessage"></input><div onClick={this.saveTag}>GO!</div></div>
+		return (
+		<div className="profileListContainer">
+			<h2>Tags</h2>
+			<ul className="profileList">
+				{showList}
+			</ul>
+			<div className="profileAddTag">
+				<input type="text" id="newTag" placeholder="Tag Name"></input>
+				<input type="text" id="newMessage" placeholder="Short Message"></input>
+				<div className="profileAddTagButton" onClick={this.saveTag}>Add New Tag</div>
+			</div>
 		</div>);
 	}
 });
 
 var Caches = React.createClass({
-	saveCaches: function() {
-		caches = [];
-		for (var i = 0; i < this.props.list.length; i++) {
-			caches.push({
-				lat: this.props.list[i].lat,
-				lon: this.props.list[i].lon,
-				placed: this.props.list[i].placed,
-				nickname: document.getElementById("cache"+i).value
-			});
-		}
-		this.props.saveCaches(caches);
-	},
-
 	render: function() {
 		var showList = [];
 		for (var i = 0; i < this.props.list.length; i++) {
@@ -58,15 +51,16 @@ var Caches = React.createClass({
 						{this.props.list[i].lon}
 					</div>
 					<div>
-						<input id={'cache'+i} placeholder={this.props.list[i].nickname || 'nickname'} onchange={this.saveCaches}></input>
+						<input id={'cache'+i} placeholder={this.props.list[i].nickname || 'nickname'}></input>
 					</div>
 				</li>);
 		}
 
-		return (<div>
-				<ul>
-					{showList}
-				</ul>
+		return (<div className="profileListContainer">
+			<h2>Caches</h2>
+			<ul className="profileList">
+				{showList}
+			</ul>
 		</div>);
 	}
 });
@@ -83,7 +77,6 @@ var Profile = React.createClass({
 	componentDidMount: function() {
 		api.getUserProfile(function(status, data) {
 			if (status) {
-				console.log(data);
 				this.setState({
 					loggedIn: this.state.loggedIn,
 					profile: data.profile
@@ -101,12 +94,14 @@ var Profile = React.createClass({
 		});
 	},
 
-	saveCaches: function(caches) {
-		console.log("here");
-		this.state.profile.caches = caches;
-	},
-
 	saveProfile: function() {
+		var caches = this.state.profile.caches;
+		console.log(caches);
+		for (var i = 0; i < caches.length; i++) {
+			caches[i].nickname = document.getElementById("cache"+i).value || caches[i].nickname;
+		}
+		this.state.profile.caches = caches;
+
 		api.updateProfile(this.state.profile, function(status, data) {
 			if (status) {
 				//Saved just dandy
@@ -121,12 +116,12 @@ var Profile = React.createClass({
 	      	<div>
 		        {this.state.loggedIn
 		            ? 	(<div>
-			       	        <h1>Dashboard</h1>
+			       	        <h1 className="profileHeader">User name here</h1>
 						{this.state.profile?
 							<div>
 								<Tags list={this.state.profile.tags} addTag={this.addTag} />
-								<Caches list={this.state.profile.caches} saveCaches={this.saveCaches} />
-								<div onClick={this.saveProfile}>Save</div>
+								<Caches list={this.state.profile.caches} />
+								<div onClick={this.saveProfile} className="profileButton buttonDefault">Save</div>
 							</div>
 						:
 							<p>"loading..."</p>
