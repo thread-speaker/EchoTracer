@@ -70,26 +70,6 @@ var auth = {
     });
   },
 
-  //Get the current user's profile
-  getUserProfile: function() {
-    // submit request to server
-    var url = "/api/profile";
-    $.ajax({
-      url: url,
-      dataType: 'json',
-      type: 'GET',
-      success: function(res) {
-        // on success, store a login token
-        return res.profile;
-      }.bind(this),
-      error: function(xhr, status, err) {
-        // if there is an error, remove any login token
-        delete localStorage.token;
-        return null;
-      }.bind(this)
-    });
-  },
-
   // get the token from local storage
   getToken: function() {
     return localStorage.token;

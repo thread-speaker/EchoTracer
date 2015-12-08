@@ -2,6 +2,7 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var Link = ReactRouter.Link;
 
+var api = require("./api.js");
 var auth = require("./auth.js");
 
 var Dashboard = React.createClass({
@@ -22,10 +23,30 @@ var Dashboard = React.createClass({
 	},
 
 	getLocation: function() {
-		console.log("hi");
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
-				alert(position.coords.latitude + ", " + position.coords.longitude);
+				//alert(position.coords.latitude + ", " + position.coords.longitude);
+				api.getUserProfile(function(status, data) {
+					var newCache = {
+						lat: position.coords.latitude,
+						lon: position.coords.longitude,
+						nickname: "",
+					};
+					var profile = data.profile;
+					console.log(profile);
+					profile.caches.push(newCache);
+					while(profile.caches.length > 5) {
+						profile.shift();
+					}
+					//save profile
+					api.updateProfile(profile, function(status, data) {
+						if (status) {
+							//success
+						} else {
+							//failure
+						}
+					});
+				});
 			});
 		}
 		else {

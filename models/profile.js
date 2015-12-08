@@ -9,7 +9,7 @@ var User = require('./user.js');
 // Profile schema
 var profileSchema = new Schema({
   user: {type: ObjectId, ref: 'users'},
-  caches : [{ lat : String, lon : String, placed : {type: Date, default: Date.now} }],
+  caches : [{ lat : String, lon : String, nickname: String, placed : {type: Date, default: Date.now} }],
   tags : [{ tag: String, message: String }],
   joined: {type: Date, default: Date.now},
   lastActivity: {type: Date, default: Date.now},
