@@ -56,30 +56,68 @@ var Dashboard = React.createClass({
 				}]
 			}];
 
-		var myTags = [];
+		//User's profile for comparisons
+		var myProfile = {};
 		api.getUserProfile(function(status, data){
-			if(status){
-				var profile = data.profile
-				myTags = profile.tags;
+			if(status) {
+				myProfile = data.profile
 			}
 		});
 
+		//prep position and tags for proximity/tag comparison
+		var myPos = this.getLocation().coords;
+		var myTags = [];
+		for(var i = 0; i < myProfile.tags.length; i++){
+			myTags.push({
+				tagName: myProfile.tags[i].tag,
+				tagEntries: []
+			});
+		}
 
-		var tagArray = [];
 		api.getAllProfiles(function(status, data){
 			if(status){
-				profiles = data.profiles;
+				var profiles = data.profiles;
 				
 				//find all profiles with a cache in range
-				closeProfiles = [];
+				var closeProfiles = [];
 				for(var i = 0; i < profiles.length; i++){
+					var p = profiles[i];
+					if(p.user === myProfile.user)
+						continue;
+					
+					//iterate over caches backwards to get most recent cache
+					for(var j = p.caches.length - 1; j >= 0; j--){ 
+						var cache = p.caches[j];
+						var lat = parseFloat(cache.lat);
+						var lon = parseFloat(cache.lon);
 
+						//5 meter default for easy testing
+						if(api.distanceBetween(myPos.latitude, myPos.longitude, lat, lon) <= 5){
+							//store the profile and the date this cache was placed
+							closeProfiles.push({
+								profile: p,
+								date: cache.placed
+							});
+							break;
+						}
+					}
 				}
 
 				//build tags+tagEntries for each closeProfile
-				closeProfiles = profiles; //temp code
 				for(var i = 0; i < closeProfiles.length; i++){
-					
+					var p = closeProfiles[i];
+
+					for(var j = 0; j < p.profile.tags.length; j++){
+						var tagName = p.profile.tags[i].tag;
+
+						if(myTags.indexOf(tagName) > 0){
+							myTags[myTags.indexOf(tagName)].tagEntries.push({
+								author: p.profile.username,
+								message: p.profile.tags[i].message,
+								date: p.date
+							})
+						}
+					}
 				}
 			}
 		});
@@ -216,10 +254,22 @@ var Tag = React.createClass({
 
 	render: function() {
 		var tagEntries = [];
-		for(var i = 0; i < this.props.dataSource.tagEntries.length; i++){
+		if(this.props.dataSource.tagEntries.length == 0){
+			var emptyEntry = {
+				author: "N/A",
+				message: "No caches found in proximity",
+				date: "N/A"
+			}
 			tagEntries.push(
-					<TagEntry key={"tagEntry" + i} dataSource={ this.props.dataSource.tagEntries[i] } />
-				);
+					<TagEntry key="tagEntryEmpty" dataSource={emptyEntry} />
+				)
+		}
+		else{
+			for(var i = 0; i < this.props.dataSource.tagEntries.length; i++){
+				tagEntries.push(
+						<TagEntry key={"tagEntry" + i} dataSource={ this.props.dataSource.tagEntries[i] } />
+					);
+			}
 		}
 		return (
 			<div>
@@ -280,10 +330,10 @@ var TagEntry = React.createClass({
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<span className="detailsBody">Message: </span><div className="detailsMessage">{this.props.dataSource.shortMessage}</div>
+						<span className="detailsBody">Message: </span><div className="detailsMessage">{this.props.dataSource.message}</div>
 					</Modal.Body>
 					<Modal.Footer>
-						<span className="detailsFooter">Date Cached: </span><span className="detailsDate">{this.props.dataSource.dateCached}</span>
+						<span className="detailsFooter">Date Cached: </span><span className="detailsDate">{this.props.dataSource.date}</span>
 						<div className="modalClose" onClick={this.hideDetails}>Close</div>
 					</Modal.Footer>
 				</Modal>
