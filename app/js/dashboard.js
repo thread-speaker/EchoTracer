@@ -71,6 +71,19 @@ var Dashboard = React.createClass({
 	getLocation: function() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
+				return {
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude,
+					coords: position.coords
+				};
+			}
+		}
+		return null;
+	}
+
+	saveCache: function() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
 				//alert(position.coords.latitude + ", " + position.coords.longitude);
 				api.getUserProfile(function(status, data) {
 					var newCache = {
@@ -147,7 +160,6 @@ var Dashboard = React.createClass({
 
 
   	render: function() {
-  		console.log("hi");
 		var tags = [];
 		for(var i = 0; i < this.state.tags.length; i++){
 			var priorityChangers = (
