@@ -2,22 +2,68 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var Link = ReactRouter.Link;
 
+var Bootstrap = require("react-bootstrap");
+var Modal = Bootstrap.Modal;
+
 var auth = require("./auth.js");
 
 var Dashboard = React.createClass({
 	getInitialState: function() {
 		var tagArray = [{
-				tagName: "foo"
+				tagName: "foo",
+				tagEntries: [{
+					author: "dabok",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "Hi!"
+				}, {
+					author: "p3",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "Hello!"					
+				}]
 			}, {
-				tagName: "bar"
+				tagName: "really long tag name",
+				tagEntries: [{
+					author: "thread",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "I am not such a short message after all!"
+				}, {
+					author: "longUsername",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
+				}]
 			}, {
-				tagName: "smash"
+				tagName: "smash",
+				tagEntries: [{
+					author: "dabok",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "Hi!"
+				}, {
+					author: "p3",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "Hello!"					
+				}]
 			}, {
-				tagName: "bros"
+				tagName: "bros",
+				tagEntries: [{
+					author: "thread",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "I am not such a short message after all!"
+				}, {
+					author: "longUsername",
+					dateCached: "Dec. 7, 2015",
+					shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
+				}]
 			}];
+
+		var expansionStateInit = [];
+		for(var i = 0; i < tagArray.length; i++){
+			expansionStateInit.push(true);
+		}
+
 		return {
 			loggedIn: auth.loggedIn(),
-			tags: tagArray
+			tags: tagArray,
+			expansionState: expansionStateInit
 		};
 	},
 
@@ -35,45 +81,53 @@ var Dashboard = React.createClass({
 
 	raisePriority: function(i) {
 		if(i > 0) {
-			console.log("raise");
-			var sender = this.state.tags[i];
-			var newTags = this.state.tags;
-			newTags.splice(i, 1);
-			newTags.splice(i-1, 0, sender);
+			var newState = this.state;
+			var sender = newState.tags[i];
+			newState.tags.splice(i, 1);
+			newState.tags.splice(i-1, 0, sender);
 
-			this.setState({
-				tags: newTags
-			});
+			var expanded = newState.expansionState[i];
+			newState.expansionState.splice(i,1);
+			newState.expansionState.splice(i-1, 0, expanded);
+
+			this.setState(newState);
 		}
 	},
 
 	dropPriority: function(i) {
 		if(i < this.state.tags.length) {
-			console.log("drop");
-			var sender = this.state.tags[i];
-			var newTags = this.state.tags;
-			newTags.splice(i, 1);
-			newTags.splice(i+1, 0, sender);
+			var newState = this.state;
+			var sender = newState.tags[i];
+			newState.tags.splice(i, 1);
+			newState.tags.splice(i+1, 0, sender);
 
-			this.setState({
-				tags: newTags
-			});
+			var expanded = newState.expansionState[i];
+			newState.expansionState.splice(i,1);
+			newState.expansionState.splice(i+1, 0, expanded);
+
+			this.setState(newState);
 		}
 	},
 
 	removeTag: function(i) {
-		console.log("remove");
-		var sender = this.state.tags[i];
-		var newTags = this.state.tags;
-		newTags.splice(i, 1);
+		if(confirm("Unregister this tag? (Other users will no longer see your message listed under this tag)")) {
+			var newState = this.state;
+			newState.tags.splice(i, 1);
+			newState.expansionState.splice(i, 1);
 
-		this.setState({
-			tags: newTags
-		});
+			this.setState(newState);
+		}
+	},
+
+	expandChange: function(i) {
+		var newState = this.state;
+		newState.expansionState[i] = !newState.expansionState[i];
+		this.setState(newState);
 	},
 
 
   	render: function() {
+  		console.log("re-rendered");
 		var tags = [];
 		for(var i = 0; i < this.state.tags.length; i++){
 			var priorityChangers = (
@@ -84,9 +138,10 @@ var Dashboard = React.createClass({
 					</div>
 				);
 			tags.push(
-					<Tag dataSource={this.state.tags[i]} key={"tag" + i} priorityChange={priorityChangers} />
+					<Tag dataSource={this.state.tags[i]} key={"tag" + i} expanded={this.state.expansionState[i]} index={i} onExpandChange={ this.expandChange } priorityChange={priorityChangers} />
 				);
 		}
+		console.log(this.state.tags);
 
 	    return (
 			<div>
@@ -98,7 +153,7 @@ var Dashboard = React.createClass({
 							<input type="button" className="cacheButton" onClick={ this.getLocation } value="Cache me here"/>
 						</span>)
 				    : 	(<span>
-				    		<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>
+				    		<Link to="login" className="buttonDefault">Login</Link> or <Link to="register" className="buttonAlt">Register</Link>
 				    	</span>)
 				}
 			</div>
@@ -107,36 +162,20 @@ var Dashboard = React.createClass({
 });
 
 var Tag = React.createClass({
-	getInitialState: function() {
-		var tagEntryArray = [{ //placeholder array for layout testing
-				shortMessage: "Hi!"
-			}, {
-				shortMessage: "Hello!"
-			}, {
-				shortMessage: "I am not such a short message after all!"
-			}, {
-				shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
-			}];
-		return {
-			expanded: true,
-			tagEntries: tagEntryArray
-		};
-	},
-
 	toggleExpand: function() {
-		this.setState({ expanded: !this.state.expanded});
+		this.props.onExpandChange(this.props.index);
 	},
 
 	render: function() {
-		var tagEntries = []
-		for(var i = 0; i < this.state.tagEntries.length; i++){
+		var tagEntries = [];
+		for(var i = 0; i < this.props.dataSource.tagEntries.length; i++){
 			tagEntries.push(
-					<TagEntry key={"tagEntry" + i} dataSource={ this.state.tagEntries[i] } />
+					<TagEntry key={"tagEntry" + i} dataSource={ this.props.dataSource.tagEntries[i] } />
 				);
 		}
 		return (
 			<div>
-				{this.state.expanded
+				{this.props.expanded
 					? (	<div className="expandable" onClick={ this.toggleExpand }>
 							<div className="glyphicon glyphicon-minus" ></div>
 						</div>
@@ -146,12 +185,12 @@ var Tag = React.createClass({
 						</div>
 						)
 				}
-				<div className="tagHeader" onClick={ this.toggleExpand }>{this.props.dataSource.tagName}</div>
+				<div className="tagHeader" onClick={ this.toggleExpand }>#{this.props.dataSource.tagName}</div>
 				<div className="priorityDiv">
 					{this.props.priorityChange}
 				</div>
 				<br/>
-				{this.state.expanded
+				{this.props.expanded
 					? (	<span>
 					 		{tagEntries} 
 					 	</span>)
@@ -163,11 +202,43 @@ var Tag = React.createClass({
 });
 
 var TagEntry = React.createClass({
+	getInitialState: function() {
+		return {
+			showModal: false
+		};
+	},
+
+	showDetails: function() {
+		this.setState({
+			showModal: true
+		})
+	},
+
+	hideDetails: function() {
+		this.setState({
+			showModal: false
+		})
+	},
+
 	render: function() {
 		return (
-			<div className="tagEntry">
-				{this.props.dataSource.shortMessage}
+			<div title="Show Details" className="tagEntry" onClick={this.showDetails}>
+				<span className="tagAuthor">@{this.props.dataSource.author}: &nbsp;</span> {this.props.dataSource.shortMessage}
 				<br/>
+				<Modal show={this.state.showModal} onHide={this.hideDetails}>
+					<Modal.Header closeButton>
+						<Modal.Title>
+							<span className="detailsHeader">Author: </span><span className="detailsAuthor">@{this.props.dataSource.author}</span>
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<span className="detailsBody">Message: </span><div className="detailsMessage">{this.props.dataSource.shortMessage}</div>
+					</Modal.Body>
+					<Modal.Footer>
+						<span className="detailsFooter">Date Cached: </span><span className="detailsDate">{this.props.dataSource.dateCached}</span>
+						<div className="modalClose" onClick={this.hideDetails}>Close</div>
+					</Modal.Footer>
+				</Modal>
 			</div>
 		)
 	}

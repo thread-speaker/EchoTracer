@@ -2,7 +2,7 @@
 
 .logo {
 	font-size: 22px;
-	color: #00ace6;
+	color: #1ac5ff;
 }
 
 .logoInitial{
@@ -67,6 +67,40 @@
 
 	.navCacheButton:hover {
 		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.buttonDefault {
+	width: auto;
+	text-align: center;
+	font-size: 18px;
+	padding: 4px 8px 4px 8px;
+	margin: 4px;
+	border: none;
+	border-radius: 4px;
+	background-color: #e67300;
+	color: black;
+}
+
+	.buttonDefault:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
+
+.buttonAlt {
+	width: auto;
+	text-align: center;
+	font-size: 18px;
+	padding: 4px 8px 4px 8px;
+	margin: 4px;
+	border: none;
+	border-radius: 4px;
+	background-color: #1ac5ff;
+	color: black;
+}
+	.buttonAlt:hover {
+		background-color: #99e5ff;
+		cursor: pointer;
 	}
 
 /* endregion */
@@ -82,22 +116,23 @@
 }
 
 .priorityChange {
-	margin-right: 5px;
-	margin-left: 5px;
-	margin-top: 10px;
-	height: 36px;
-	margin-bottom: 15px;
-	color: #333333 !important;
+	margin: 5px;
+	padding: 5px;
 }
 
 	.glyphicon-chevron-up:hover {
 		cursor: pointer;
-		color: #999999;
+		background-color: #ffcc99;
 	}
 
 	.glyphicon-chevron-down:hover {
 		cursor: pointer;
-		color: #999999;
+		background-color: #ffcc99;
+	}
+
+	.glyphicon-remove:hover {
+		cursor: pointer;
+		background-color: #ffcc99;
 	}
 
 .expandable {
@@ -123,7 +158,9 @@
 .tagHeader {
 	min-width: 150px;
 	font-size: 30px;
+	font-weight: bold;
 	padding-left: 25px;
+	padding-right: 25px;
 	background-color: #e67300;
 	float: left;
 	border: none;
@@ -143,7 +180,7 @@
 	font-size: 20px;
 	margin-left: 50px;
 	padding: 0 10px 0 10px;
-	background-color: #00ace6;
+	background-color: #1ac5ff;
 	float: left;
 	white-space: nowrap;
 	overflow: hidden;
@@ -159,6 +196,10 @@
 		cursor: pointer;
 	}
 
+	.tagAuthor{
+		font-weight: bold;
+	}
+
 .dividerBar {
 	width: 95%;
 	margin-left: auto;
@@ -168,6 +209,61 @@
 	border: solid 1px black;
 	clear: both;
 }
+
+.detailsHeader {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+.detailsAuthor {
+	font-size: 16px;
+	margin-left: 5px;
+}
+
+.detailsBody {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.detailsMessage {
+	font-size: 16px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.detailsFooter {
+	top:5px;
+	position:relative;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: inline-block;
+	float: left;	
+}
+
+.detailsDate {
+	top:5px;
+	position:relative;
+	font-size: 16px;
+	margin-left: 5px;
+	float: left;	
+}
+
+.modalClose{
+	background-color: #e67300;
+	padding: 4px 8px 4px 8px;
+	border-radius:4px;
+	border:none;
+	font-size:20px;
+	float: right;
+}
+
+	.modalClose:hover {
+		background-color: #ffcc99;
+		cursor: pointer;
+	}
 
 .cacheButton {
 	background-color: #e67300;
@@ -184,6 +280,7 @@
 
 	.cacheButton:hover {
 		background-color: #ffcc99;
+		cursor: pointer;
 	}
 
 /* endregion*/
