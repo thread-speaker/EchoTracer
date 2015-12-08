@@ -75,6 +75,22 @@ var api = {
     });
   },
 
+  distanceBetween: function(lat1, lon1, lat2, lon2) {}
+    var R = 6371000; // metres
+    var phi1 = lat1.toRadians();
+    var phi2 = lat2.toRadians();
+    var deltaPhi = (lat2-lat1).toRadians();
+    var deltaLambda = (lon2-lon1).toRadians();
+
+    var a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) +
+          Math.cos(phi1) * Math.cos(phi2) *
+          Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    var d = R * c;
+    return d;
+  }
+
   // delete an item, call the callback when complete
   deleteItem: function(item, cb) {
     var url = "/api/items/" + item.id;
