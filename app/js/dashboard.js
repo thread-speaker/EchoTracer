@@ -118,7 +118,7 @@ var Tag = React.createClass({
 				shortMessage: "I am a short message that should require multiple lines, potentially, I hope. Maybe? Can I trigger some overflow ellipses please?"
 			}];
 		return {
-			expanded: false,
+			expanded: true,
 			tagEntries: tagEntryArray
 		};
 	},
