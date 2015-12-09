@@ -36,12 +36,14 @@ The profile is plain JSON; nothing is encrypted. Caches is an array of size 0-5 
 <ul>
   <li>Customizable proximity radius (per tag)</li>
   <li>Anonymous private messaging + Inbox (to contact tagAuthors for detailed communication)</li>
+  <li>Limitations on tag message length (keep things simple and quick)</li>
   <li>Tag suggestions (help user pick a similar tag with more hits)</li>
   <li>Mark search results as old, so they don't show up again in your feed</li>
   <li>Favorite search results</li>
   <li>Tag-combination searches (i.e. Only search people with multiple tags)</li>
   <li>Google maps showing cached locations in user profile</li>
   <li>Facebook/Twitter/Other social media logins + integration</li>
+  <li>Means to filter out adult/inappropriate/spam content</li>
   <li>Request vs. Offer tags (Employment searches / classifieds postings)? </li>
   <li>Additional tables for quicker proximity searches?</li>
 </ul>
