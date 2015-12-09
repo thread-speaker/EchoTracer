@@ -69,20 +69,26 @@ var App = React.createClass({
             nickname: "",
           };
           var profile = data.profile;
-          profile.caches.push(newCache);
-          while(profile.caches.length > 5) {
-            profile.shift();
+          if(profile.caches.length < 5 
+            || confirm("You have cached your profile at the maximum number of locations (5). " 
+              + "Caching this location will delete your oldest cache. Proceed?"))
+          {
+            profile.caches.splice(0,1);
+            profile.caches.push(newCache);
+
+            //save profile
+            api.updateProfile(profile, function(status, data) {
+              if (status) {
+                alert("Profile cached at this location");
+                location.reload();
+                //success
+              } else {
+                //failure
+              }
+            }.bind(this));
           }
-          //save profile
-          api.updateProfile(profile, function(status, data) {
-            if (status) {
-              //success
-            } else {
-              //failure
-            }
-          });
-        });
-      });
+        }.bind(this));
+      }.bind(this));
     }
     else {
       alert("Geolocation lookup failed!");
@@ -147,7 +153,8 @@ var routes = (
           <Route name="profile" path="/profile" component={Profile} />
           <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
-          <Route names="dashboard" path="/dashboard" component={Dashboard}/>
+          <Route name="dashboard" path="/dashboard" component={Dashboard}/>
+          <Route path="#" component={Login} />
         </Route>
       </Router>
 );

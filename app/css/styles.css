@@ -341,18 +341,29 @@
 .deleteTag {
 	display: inline-block;
 	float: right;
-	padding: 0px 5px;
-	background-color: #e67300;
-	border-radius: 7px;
+	padding: 5px;
+	top: -3px;
+	position: relative;
+	border-radius: 5px;
 }
+
+	.deleteTag:hover {
+		cursor: pointer;
+		background-color: #ffcc99;
+	}
 
 .deleteCache {
 	display: inline-block;
 	float: right;
-	padding: 0px 5px;
-	background-color: #e67300;
-	border-radius: 7px;
+	padding: 5px;
+	position: relative;
+	border-radius: 5px;
 }
+
+	.deleteCache:hover {
+		cursor: pointer;
+		background-color: #ffcc99;
+	}
 
 .profileCaches {
 	background-color: #1ac5ff;

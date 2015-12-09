@@ -38,24 +38,25 @@ var Tags = React.createClass({
 		for (var i = 0; i < this.props.list.length; i++) {
 			showList.push(
 				<li key={"tagList"+i}>
-					<div className="profileTagName">{this.props.list[i].tag}</div>:
+					<div className="profileTagName"><b>#{this.props.list[i].tag}</b></div>:
 					<div className="profileTagMessage">{this.props.list[i].message}</div>
-					<div className="deleteTag" onClick={that.deleteTag.bind(this, i)}>X</div>
+					<div className="deleteTag glyphicon glyphicon-remove" title="Unregister Tag" onClick={that.deleteTag.bind(this, i)}></div>
 				</li>);
 		}
 
 		return (
-		<div className="profileListContainer">
-			<h2>Tags</h2>
-			<ul className="profileList">
-				{showList}
-			</ul>
-			<div className="profileAddTag">
-				<input type="text" id="newTag" placeholder="Tag Name"></input>
-				<input type="text" id="newMessage" placeholder="Short Message"></input>
-				<div className="profileAddTagButton" onClick={this.saveTag}>Add New Tag</div>
+			<div className="profileListContainer">
+				<h2>Registered Tags</h2>
+				<ul className="profileList">
+					{showList}
+				</ul>
+				<div className="profileAddTag">
+					<input type="text" id="newTag" placeholder="Tag Name"></input>
+					<input type="text" id="newMessage" placeholder="Short Message"></input>
+					<span className="buttonDefault" onClick={this.saveTag}>Add New Tag</span>
+				</div>
 			</div>
-		</div>);
+		);
 	}
 });
 
@@ -71,17 +72,17 @@ var Caches = React.createClass({
 			showList.push(
 				<li key={"cacheList"+i}>
 					<div>
-						<span>Nickname: </span>
+						<span><b>Nickname: </b></span>
 						<input id={'cache'+i} placeholder={this.props.list[i].nickname || 'nickname'} className="cacheNameInput"></input>
 						{this.props.list[i].lat}, 
 						{this.props.list[i].lon}
-						<div className="deleteCache" onClick={that.deleteCache.bind(this, i)}>X</div>
+						<div className="deleteCache glyphicon glyphicon-remove" title="Remove Cache" onClick={that.deleteCache.bind(this, i)}></div>
 					</div>
 				</li>);
 		}
 
 		return (<div className="profileListContainer">
-			<h2>Caches</h2>
+			<h2>Cached Locations</h2>
 			<ul className="profileList">
 				{showList}
 			</ul>
@@ -176,29 +177,30 @@ var Profile = React.createClass({
 
 	saveCache: function() {
 		if (navigator.geolocation) {
-			console.log("hi");
 			navigator.geolocation.getCurrentPosition(function(position) {
 				//alert(position.coords.latitude + ", " + position.coords.longitude);
 				api.getUserProfile(function(status, data) {
-					console.log("hi");
 					var newCache = {
 						lat: position.coords.latitude,
 						lon: position.coords.longitude,
 						nickname: "",
 					};
 					var profile = data.profile;
-					profile.caches.push(newCache);
-					while(profile.caches.length > 5) {
-						profile.shift();
+					if(profile.caches.length < 5 
+						|| confirm("You have cached your profile at the maximum number of locations (5). " 
+							+ "Caching this location will delete your oldest cache. Proceed?"))
+					{
+						profile.splice(0,1);
+						profile.caches.push(newCache);
+						//save profile
+						api.updateProfile(profile, function(status, data) {
+							if (status) {
+								//success
+							} else {
+								//failure
+							}
+						});
 					}
-					//save profile
-					api.updateProfile(profile, function(status, data) {
-						if (status) {
-							//success
-						} else {
-							//failure
-						}
-					});
 				});
 			});
 		}
@@ -214,7 +216,7 @@ var Profile = React.createClass({
 		            ? 	(<div>
 		            		{this.state.profile?
 		            			<div>
-				       	        	<h1 className="profileHeader">{this.state.profile.username}</h1>
+				       	        	<h1 className="profileHeader">@{this.state.profile.username}</h1>
 									<Tags list={this.state.profile.tags} addTag={this.addTag} deleteTag={this.deleteTag} />
 									<Caches list={this.state.profile.caches} deleteCache={this.deleteCache} />
 									<div className="profileButton buttonDefault" onClick={ this.saveCache }>Cache me here</div>
