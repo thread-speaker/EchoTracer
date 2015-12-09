@@ -1,16 +1,20 @@
 var $ = require("jquery");
+var sanitize = require('mongo-sanitize');
 
 // authentication object
 var auth = {
   register: function(username, password, cb) {
     // submit request to server, call the callback when complete
     var url = "/api/users/register";
+
+    var safeUsername = sanitize(username);
+
     $.ajax({
       url: url,
       dataType: 'json',
       type: 'POST',
       data: {
-        username: username,
+        username: safeUsername,
         password: password
       },
       // on success, store a login token

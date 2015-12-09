@@ -190,11 +190,14 @@ var Profile = React.createClass({
 						|| confirm("You have cached your profile at the maximum number of locations (5). " 
 							+ "Caching this location will delete your oldest cache. Proceed?"))
 					{
-						profile.splice(0,1);
 						profile.caches.push(newCache);
+						while (profile.caches.length > 5) {
+							profile.caches.shift();
+						}
 						//save profile
 						api.updateProfile(profile, function(status, data) {
 							if (status) {
+								alert("Profile cached at this location")
 								//success
 							} else {
 								//failure

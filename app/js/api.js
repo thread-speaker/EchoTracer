@@ -1,4 +1,5 @@
 var $ = require("jquery");
+var sanitize = require('mongo-sanitize');
 
 // API object
 var api = {
@@ -51,14 +52,32 @@ var api = {
   // update a profile, call the callback when complete
   updateProfile: function(item, cb) {
     var url = "/api/profile/";
+
+    var safeUsername = sanitize(item.username);
+
+    var safeCaches = [];
+    for (var i = 0; i < item.caches.length; i++) {
+      var safeCache = item.caches[i];
+      safeCache.nickname = sanitize(safeCache.nickname);
+      safeCaches.push(safeCache);
+    }
+
+    var safeTags = [];
+    for (var i = 0; i < item.tags.length; i++) {
+      var safeTag = item.tags[i];
+      safeTag.tag = sanitize(safeTag.tag);
+      safeTag.message = sanitize(safeTag.message);
+      safeTags.push(safeTag);
+    }
+
     $.ajax({
       url: url,
       contentType: 'application/json',
       data: JSON.stringify({
         profile: {
           username: item.username,
-          caches: item.caches,
-          tags: item.tags
+          caches: safeCaches,
+          tags: safeTags
         }
       }),
       type: 'PUT',
