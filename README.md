@@ -44,7 +44,7 @@ The profile is plain JSON; nothing is encrypted. Caches is an array of size 0-5 
   <li>Facebook/Twitter/Other social media logins + integration</li>
   <li>Request vs. Offer tags (Employment searches / classifieds postings)? </li>
   <li>Additional tables for quicker proximity searches?</li>
-<ul>
+</ul>
 
 ## Setup
 
