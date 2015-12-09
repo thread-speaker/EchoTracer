@@ -44,6 +44,7 @@ The profile is plain JSON; nothing is encrypted. Caches is an array of size 0-5 
   <li>Google maps showing cached locations in user profile</li>
   <li>Facebook/Twitter/Other social media logins + integration</li>
   <li>Means to filter out adult/inappropriate/spam content</li>
+  <li>Report users for bad behavior</li>
   <li>Request vs. Offer tags (Employment searches / classifieds postings)? </li>
   <li>Additional tables for quicker proximity searches?</li>
 </ul>
