@@ -61,8 +61,8 @@ var Dashboard = React.createClass({
 									var myLat = parseFloat(myPos.latitude);
 									var myLon = parseFloat(myPos.longitude);
 
-									//1000 meter placeholder until dynamic radius is implemented
-									if(api.distanceBetween(myLat, myLon, lat, lon) <= 1000){
+									//5 km placeholder until dynamic radius is implemented
+									if(api.distanceBetween(myLat, myLon, lat, lon) <= 5000){
 										//Store the profile and the date this cache was placed
 										closeProfiles.push({
 											profile: p,
