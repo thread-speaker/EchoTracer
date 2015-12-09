@@ -121,10 +121,18 @@ var Dashboard = React.createClass({
 									var p = closeProfiles[i];
 
 									for(var j = 0; j < p.profile.tags.length; j++){
-										var tagName = p.profile.tags[i].tag;
+										var tagName = p.profile.tags[j].tag;
 
-										if(myTags.indexOf(tagName) > 0){
-											myTags[myTags.indexOf(tagName)].tagEntries.push({
+										var found = -1;
+										for (var k = 0; k < myTags.length; k++) {
+											if (myTags[k].tagName.toLowerCase() === tagName.toLowerCase()) {
+												found = k;
+												break;
+											}
+										}
+
+										if(found > -1){
+											myTags[k].tagEntries.push({
 												author: p.profile.username,
 												message: p.profile.tags[i].message,
 												date: p.date
@@ -355,7 +363,7 @@ var TagEntry = React.createClass({
 	render: function() {
 		return (
 			<div title="Show Details" className="tagEntry" onClick={this.showDetails}>
-				<span className="tagAuthor">@{this.props.dataSource.author}: &nbsp;</span> {this.props.dataSource.shortMessage}
+				<span className="tagAuthor">@{this.props.dataSource.author}: &nbsp;</span> {this.props.dataSource.message}
 				<br/>
 				<Modal show={this.state.showModal} onHide={this.hideDetails}>
 					<Modal.Header closeButton>

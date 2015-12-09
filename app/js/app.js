@@ -27,8 +27,9 @@ var History = ReactRouter.History;
 var Router = ReactRouter.Router;
 
 
-var styles = require("../css/styles.css")
+var styles = require("../css/styles.css");
 var auth = require("./auth.js");
+var api = require("./api.js");
 
 var App = React.createClass({
   mixins: [ History ],
@@ -57,17 +58,36 @@ var App = React.createClass({
     location.reload();
   },
 
-  getLocation: function() {
+  saveCache: function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        alert(position.coords.latitude + ", " + position.coords.longitude);
+        //alert(position.coords.latitude + ", " + position.coords.longitude);
+        api.getUserProfile(function(status, data) {
+          var newCache = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            nickname: "",
+          };
+          var profile = data.profile;
+          profile.caches.push(newCache);
+          while(profile.caches.length > 5) {
+            profile.shift();
+          }
+          //save profile
+          api.updateProfile(profile, function(status, data) {
+            if (status) {
+              //success
+            } else {
+              //failure
+            }
+          });
+        });
       });
     }
     else {
       alert("Geolocation lookup failed!");
     }
   },
-
 
   render: function() {
     return (
@@ -94,7 +114,7 @@ var App = React.createClass({
                         <MenuItem id="navProfileItem" to="profile" className="navDropItem">Profile</MenuItem>
                       </LinkContainer>
                       <MenuItem divider />
-                      <MenuItem ><input type="button" onClick={this.getLocation} className="navCacheButton" value="Cache me here" /></MenuItem>
+                      <MenuItem ><input type="button" onClick={this.saveCache} className="navCacheButton" value="Cache me here" /></MenuItem>
                     </NavDropdown>
                     <NavItem disabled>|</NavItem>                    
                     <NavItem ><span onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</span></NavItem>

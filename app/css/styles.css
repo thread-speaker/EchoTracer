@@ -333,10 +333,25 @@
 	display: inline-block;
 	background-color: #e67300;
 	padding: 5px;
-	border-radius: 7px;
 	width: 25%;
 	float: right;
 	text-align: center;
+}
+
+.deleteTag {
+	display: inline-block;
+	float: right;
+	padding: 0px 5px;
+	background-color: #e67300;
+	border-radius: 7px;
+}
+
+.deleteCache {
+	display: inline-block;
+	float: right;
+	padding: 0px 5px;
+	background-color: #e67300;
+	border-radius: 7px;
 }
 
 .profileCaches {
@@ -353,6 +368,14 @@
 
 .profileButton {
 	background-color: #e67300;
+	border-radius: 7px;
+	float: left;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.profileButton-blue {
+	background-color: #1ac5ff;
 	border-radius: 7px;
 	float: left;
 	text-align: center;
