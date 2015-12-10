@@ -7,6 +7,8 @@ Our goal is to build a social networking app that helps people be more physicall
 
 <img src="https://cloud.githubusercontent.com/assets/7663484/11719796/9bb0b4f0-9f19-11e5-8ce9-e80f18aa02c3.png" style="max-width: 800px" />
 
+<img src="https://cloud.githubusercontent.com/assets/7663484/11719851/d5dcef22-9f19-11e5-8c5b-a34f91ec23db.png" style="max-width: 800px" />
+
 ## Database Schema
 The database contains 2 tables: Users and Profiles.
 ```
