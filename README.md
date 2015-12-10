@@ -3,7 +3,7 @@
 
 A live version of the app can be tested <a href="http://52.91.150.159:3000/">HERE</a>
 
-GeoProfile is a social networking app designed specifically for information that is specific to your physical location. Looking for some buddies to play soccer with? Go to the nearest park and drop a cache with tag "#Soccer: looking for some buddies to play Saturday mornings 7~10am." You will be able to search other caches nearby that have the "#Soccer" tag registered to their profile. Once we get the messaging server implemented, you could shoot each other anonymous messages to coordinate a game.
+GeoProfile is a social networking app designed specifically for information that is specific to your physical location. Looking for some buddies to play soccer with? Go to the nearest park and drop a cache with tag "Soccer: looking for some buddies to play Saturday mornings 7~10am." You will be able to search other caches nearby that have the "Soccer" tag registered to their profile. In the future, we plan to implement a messaging system, so you could shoot each other anonymous messages to coordinate a game.
 
 Our goal is to build a social networking app that helps people be more physically aware of the people in their close proximity. Independent employment, dating, special interest get-togethers, study buddies, etc. All of these could potentially benefit from a geolocation targeted networking app. 
 
