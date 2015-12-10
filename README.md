@@ -1,13 +1,27 @@
 
 # Geolocation Profiler
 
+A live version of the app can be tested <a href="http://52.91.150.159:3000/">HERE</a>
+
 GeoProfile is a social networking app designed specifically for information that is specific to your physical location. Looking for some buddies to play soccer with? Go to the nearest park and drop a cache with tag "#Soccer: looking for some buddies to play Saturday mornings 7~10am." You will be able to search other caches nearby that have the "#Soccer" tag registered to their profile. Once we get the messaging server implemented, you could shoot each other anonymous messages to coordinate a game.
 
 Our goal is to build a social networking app that helps people be more physically aware of the people in their close proximity. Independent employment, dating, special interest get-togethers, study buddies, etc. All of these could potentially benefit from a geolocation targeted networking app. 
 
+<b>Dashboard:</b>
 <img src="https://cloud.githubusercontent.com/assets/7663484/11719796/9bb0b4f0-9f19-11e5-8ce9-e80f18aa02c3.png" style="max-width: 800px" />
 
+The dashboard gives you a collapsible tag summary for any tag that you have registered to your profile. It will start empty until you add tags to your profile. When a tag is expanded, it will find all matching tags that were posted by other users within a 5km radius. Tags are re-orderable and removable from the dashboard.
+
+Before your tags will show up for other users on this page, you need to cache your profile at the location where you want the results to appear.
+
+<b>Profile:</b>
 <img src="https://cloud.githubusercontent.com/assets/7663484/11719851/d5dcef22-9f19-11e5-8c5b-a34f91ec23db.png" style="max-width: 800px" />
+
+The profile lets your view, add, and remove your tags and caches. All tags require a short message. Your message will display in other user's search results when they are within range of one of your cached profiles.
+
+Profile nicknames can be assigned to your caches to help you remember which cache is for which location (placeholder until we could implement google maps in the profile page).
+
+The tags registered in this screenshot were all cached in our CS360 classroom at BYU campus, so anyone who registers one of these tags will see these in their dashboard if they access the website within a 5km radius of the classroom. Feel free to try it out. From most locations on campus you will see them, but you probably won't see them if you access the page from off-campus. Again, the live site can be tested <a href="http://52.91.150.159:3000/">here<a>
 
 ## Database Schema
 The database contains 2 tables: Users and Profiles.
