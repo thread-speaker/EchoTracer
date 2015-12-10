@@ -12,7 +12,7 @@ Our goal is to build a social networking app that helps people be more physicall
 
 The dashboard gives you a collapsible tag summary for any tag that you have registered to your profile. It will start empty until you add tags to your profile. When a tag is expanded, it will find all matching tags that were posted by other users within a 5km radius. Tags are re-orderable and removable from the dashboard.
 
-Before your tags will show up for other users on this page, you need to cache your profile at the location where you want the results to appear.
+Before your tags will show up for other users on this page, you need to cache your profile at the location where you want the results to appear. If you add a cache, all of your tags will be discoverable in range of that cache. If you do not want to be discoverable at a location, do not cache yourself there. All cached information is anonymous using the username registered to your account.
 
 <b>Profile:</b>
 <img src="https://cloud.githubusercontent.com/assets/7663484/11719851/d5dcef22-9f19-11e5-8c5b-a34f91ec23db.png" style="max-width: 800px" />
