@@ -5,9 +5,7 @@ GeoProfile is a social networking app designed specifically for information that
 
 Our goal is to build a social networking app that helps people be more physically aware of the people in their close proximity. Independent employment, dating, special interest get-togethers, study buddies, etc. All of these could potentially benefit from a geolocation targeted networking app. 
 
-Other social networking tools have some form of location-based functionality, but they flood you with more results than you want, or they don't give you enough control over your dashboard, or the geolocation information feels sluggish or inaccurate, or they involve long, arduous profiles that complicate search results.
-
-Our goal was to create a tool that makes the process quick and succint, somewhat like the way Twitter condensed public statements for quicker, easier user digestion.
+<img src="https://cloud.githubusercontent.com/assets/7663484/11719796/9bb0b4f0-9f19-11e5-8ce9-e80f18aa02c3.png" style="max-width: 800px" />
 
 ## Database Schema
 The database contains 2 tables: Users and Profiles.
