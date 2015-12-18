@@ -1,6 +1,17 @@
 // setup Express
 var app = require('./models/express.js');
 
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+}
+
+app.configure(function () {
+	app.use(allowCrossDomain);
+}
+
 // setup mongoose
 var mongoose = require('mongoose');
 var mongoURI = "mongodb://localhost:27017/profileCacher";
