@@ -15,55 +15,28 @@ app.use(bodyParser.urlencoded({
 
 // register a user
 app.post('/api/users/register', function (req, res) {
-  // find or create the user with the given username
-  User.findOrCreate({username: req.body.username}, function(err, user, created) {
-    if (created) {
-      // if this username is not taken, then create a user record
-      user.name = req.body.name;
-      user.set_password(req.body.password);
-      user.save(function(err) {
-	if (err) {
-	  res.sendStatus("403");
-	  return;
-	}
-	Profile.create({username:req.body.username,caches:[],tags:[],user:user.id}, function(err,profile) {
+	User.addUser(req.body.email, req.body.name, req.body.password, function(err, user) {
 		if (err) {
-			res.sendStatus(403);
-			return;
+			res.sendStatus('403');
 		}
+		// create a token
+		var token = User.generateToken(user.username);
+		// return value is JSON containing the user's name and token
+		res.json({username: user.username, token: token});
 	});
-        // create a token
-	var token = User.generateToken(user.username);
-        // return value is JSON containing the user's name and token
-        res.json({username: user.username, token: token});
-      });
-    } else {
-      // return an error if the username is taken
-      res.sendStatus("403");
-    }
-  });
 });
 
 // login a user
 app.post('/api/users/login', function (req, res) {
-  // find the user with the given username
-  User.findOne({username: req.body.username}, function(err,user) {
-    if (err) {
-      res.sendStatus(403);
-      return;
-    }
-    // validate the user exists and the password is correct
-    if (user && user.checkPassword(req.body.password)) {
-      // create a token
-      var token = User.generateToken(user.username);
-      // return value is JSON containing user's name and token
-      res.json({username: user.username, token: token});
-    } else {
-      res.sendStatus(403);
-    }
-  });
+	User.loginUser(req.body.email, req.body.password, function(err, auth) {
+		if (err) {
+			res.sendStatus('403');
+		}
+		console.log(auth);
+	});
 });
 
+/*
 // get the profile for the user
 app.get('/api/profile', function (req,res) {
   // validate the supplied token
@@ -160,4 +133,4 @@ app.put('/api/profile', function (req,res) {
       res.sendStatus(403);
     }
   });
-});
+});*/

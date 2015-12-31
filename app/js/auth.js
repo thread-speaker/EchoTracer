@@ -1,5 +1,6 @@
 var $ = require("jquery");
-var sanitize = require('mongo-sanitize');
+var sanitize = null;
+//var sanitize = require('mongo-sanitize');
 
 // authentication object
 var auth = {
