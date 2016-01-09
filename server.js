@@ -1,5 +1,6 @@
-// setup Express
+// setup server
 var app = require('./platform/express.js');
+var api = require('./platform/api');
 
 // start the server
 var server = app.listen(3000, function () {

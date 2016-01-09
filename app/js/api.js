@@ -1,6 +1,4 @@
 var $ = require("jquery");
-var sanitize = null;
-//var sanitize = require('mongo-sanitize');
 
 // API object
 var api = {
@@ -26,7 +24,7 @@ var api = {
       }.bind(this)
     });
   },
-
+/*
   //Get all the profiles
   getAllProfiles: function(cb) {
     // submit request to server
@@ -54,20 +52,14 @@ var api = {
   updateProfile: function(item, cb) {
     var url = "/api/profile/";
 
-    var safeUsername = sanitize(item.username);
-
     var safeCaches = [];
     for (var i = 0; i < item.caches.length; i++) {
-      var safeCache = item.caches[i];
-      safeCache.nickname = sanitize(safeCache.nickname);
-      safeCaches.push(safeCache);
+      safeCaches.push(item.caches[i]);
     }
 
     var safeTags = [];
     for (var i = 0; i < item.tags.length; i++) {
       var safeTag = item.tags[i];
-      safeTag.tag = sanitize(safeTag.tag);
-      safeTag.message = sanitize(safeTag.message);
       safeTags.push(safeTag);
     }
 
@@ -95,7 +87,7 @@ var api = {
       }
     });
   },
-
+*/
   distanceBetween: function(lat1, lon1, lat2, lon2) {
     var R = 6371000; // metres
     var phi1 = this.numToRad(lat1);

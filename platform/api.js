@@ -1,6 +1,5 @@
 var app = require('./express.js');
 var User = require('./user.js');
-var Profile = require('./profile.js');
 
 // setup body parser
 var bodyParser = require('body-parser');
@@ -20,9 +19,9 @@ app.post('/api/users/register', function (req, res) {
 			res.sendStatus('403');
 		}
 		// create a token
-		var token = User.generateToken(user.username);
+		var token = User.generateToken(req.body.email);
 		// return value is JSON containing the user's name and token
-		res.json({username: user.username, token: token});
+		res.json({email: req.body.email, username: req.body.name, token: token});
 	});
 });
 
@@ -32,33 +31,31 @@ app.post('/api/users/login', function (req, res) {
 		if (err) {
 			res.sendStatus('403');
 		}
-		console.log(auth);
+		// create a token
+		var token = User.generateToken(req.body.email);
+		// return value is JSON containing the user's name and token
+		res.json({
+			email: auth.email,
+			username: auth.username,
+			token: token
+		});
+	});
+});
+
+// get the profile for the user
+app.get('/api/profile', function (req,res) {
+	// validate the supplied token
+	User.verifyToken(req.headers.authorization, function(user) {
+		if (user) {
+			// if the token is valid, find the user's profile and return it
+			res.json(user);
+		} else {
+			res.sendStatus(403);
+		}
 	});
 });
 
 /*
-// get the profile for the user
-app.get('/api/profile', function (req,res) {
-  // validate the supplied token
-  user = User.verifyToken(req.headers.authorization, function(user) {
-    if (user) {
-      // if the token is valid, find the user's profile and return it
-      Profile.find({user:user.id}, function(err, profiles) {
-	if (err) {
-	  res.sendStatus(403);
-	  return;
-	}
-	if (profiles.length > 0) {
-          // return value is the list of user's profiles. They only have one, and this code could be streamlined...
-          res.json({profile: profiles[0]});
-        }
-      });
-    } else {
-      res.sendStatus(403);
-    }
-  });
-});
-
 // get a profile
 app.get('/api/profile/user/:user_id', function (req,res) {
   // validate the supplied token

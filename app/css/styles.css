@@ -291,10 +291,26 @@
 /* endregion*/
 
 /* region profile */
+.profileUser {
+	float: left;
+	width: 20rem;
+	margin-right: 0.3rem;
+}
+
 .profileHeader {
 	color: #e67300;
+	text-align: center;
 	display: block;
-	margin-left: 10px;
+	width: 100%;
+	margin: 0;
+}
+
+div.photoLarge {
+	display: inline-block;
+	background: #ccc;
+	width: 20rem;
+	height: 20rem;
+	border-radius: 50%;
 }
 
 .profileListContainer {

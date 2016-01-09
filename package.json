@@ -1,22 +1,24 @@
 {
-  "name": "Profile-Cacher",
+  "name": "Echo-Tracer",
   "version": "0.0.0",
-  "description": "MongoDB cache of people profiles with geolocations",
+  "description": "An server for augmented reality games such as specialized versions of tag.",
   "main": "app.js",
   "dependencies": {
     "bcrypt": "~0.8.3",
     "body-parser": "~1.12.4",
     "bootstrap": "^3.3.6",
     "express": "~4.12.4",
+    "firebase": "^2.3.2",
     "history": "^1.17.0",
     "jquery": "^2.1.4",
     "jsonwebtoken": "~5.0.1",
     "react": "^0.14.2",
     "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.2",
+    "react-gmaps": "^1.2.2",
     "react-router": "^1.0.0",
     "react-router-bootstrap": "^0.19.3",
-    "firebase": "^2.3.2"
+    "reactify": "^1.1.1"
   },
   "devDependencies": {
     "babel-loader": "5.3.2",
@@ -28,6 +30,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Curtis Merrell",
+  "author": "Aaron Monson",
   "license": "GPL"
 }

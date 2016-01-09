@@ -23,6 +23,7 @@ var Register = React.createClass({
 		// prevent default browser submit
 		event.preventDefault();
 		// get data from form
+		var email = this.refs.email.value;
 		var username = this.refs.username.value;
 		var password = this.refs.password.value;
 		var passwordConfirm = this.refs.passwordConfirm.value;
@@ -38,7 +39,7 @@ var Register = React.createClass({
 		}
 
 		// register via the API
-		auth.register(username, password, function(loggedIn) {
+		auth.register(email, username, password, function(loggedIn) {
 		  // register callback
 			if (!loggedIn)
 			    return this.setState({
@@ -55,7 +56,8 @@ var Register = React.createClass({
 			<div>
 				<h2>Register</h2>
 				<form className="registerForm" onSubmit={this.register}>
-					<input type="text" placeholder="Username" ref="username" autoFocus={true} /><br/>
+					<input type="text" placeholder="Email" ref="email" autoFocus={true} /><br/>
+					<input type="text" placeholder="Username" ref="username" /><br/>
 					<input type="password" placeholder="Password" ref="password"/><br/>
 					<input type="password" placeholder="Confirm Password" ref="passwordConfirm"/><br/>
 					<input className="btn btn-warning" type="submit" value="Register" />

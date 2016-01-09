@@ -1,26 +1,24 @@
 var $ = require("jquery");
-var sanitize = null;
-//var sanitize = require('mongo-sanitize');
 
 // authentication object
-var auth = {
-  register: function(username, password, cb) {
+var Auth = {
+  register: function(email, username, password, cb) {
     // submit request to server, call the callback when complete
     var url = "/api/users/register";
-
-    var safeUsername = sanitize(username);
 
     $.ajax({
       url: url,
       dataType: 'json',
       type: 'POST',
       data: {
-        username: safeUsername,
+        email, email,
+        name: username,
         password: password
       },
       // on success, store a login token
       success: function(res) {
         localStorage.token = res.token;
+        localStorage.email = res.email;
         localStorage.username = res.username;
         this.onChange(true);
         if (cb)
@@ -36,7 +34,7 @@ var auth = {
     });
   },
   // login the user
-  login: function(username, password, cb) {
+  login: function(email, password, cb) {
     // submit login request to server, call callback when complete
     cb = arguments[arguments.length - 1];
     // check if token in local storage
@@ -54,12 +52,13 @@ var auth = {
       dataType: 'json',
       type: 'POST',
       data: {
-        username: username,
+        email: email,
         password: password
       },
       success: function(res) {
         // on success, store a login token
         localStorage.token = res.token;
+        localStorage.email = res.email;
         localStorage.username = res.username;
         this.onChange(true);
         if (cb)
@@ -80,9 +79,8 @@ var auth = {
     return localStorage.token;
   },
 
-  // get the name from local storage
-  getName: function() {
-    return localStorage.name;
+  getUsername: function() {
+    return localStorage.username;
   },
   
   // logout the user, call the callback when complete
@@ -96,9 +94,9 @@ var auth = {
   loggedIn: function() {
     return !!localStorage.token;
   },
-  
+
   // default onChange function
   onChange: function() {},
 };
 
-module.exports = auth;
+module.exports = Auth;

@@ -1,4 +1,4 @@
-import Dashboard from "./dashboard";
+import GamesList from "./dashboard";
 import Profile from "./profile";
 import Register from "./register";
 import Login from "./login";
@@ -98,47 +98,45 @@ var App = React.createClass({
   },
 
   render: function() {
+    const navbarInstance = (
+  <Navbar inverse>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <Link to="dashboard">
+          <span className="logoMain">
+            <span className="logo">
+              <span className="logoInitial">E</span>cho Tracer
+            </span>
+          </span>
+        </Link>
+      </Navbar.Brand>
+      <Navbar.Toggle />
+    </Navbar.Header>
+    {this.state.loggedIn ?
+    <Navbar.Collapse>
+      <Nav>
+        <NavItem href="#/gameslist">My games</NavItem>
+      </Nav>
+      <Nav pullRight>
+        <NavItem>Make Echo</NavItem>
+        <NavItem href="#/profile">Profile</NavItem>
+        <NavItem ><span onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</span></NavItem>
+      </Nav>
+    </Navbar.Collapse>
+    :
+    <Navbar.Collapse>
+      <Nav pullRight>
+        <NavItem href="#/register"><span className="glyphicon glyphicon-user"></span> Sign Up</NavItem>
+        <NavItem href="#/login" ><span className="glyphicon glyphicon-log-in"></span> Login</NavItem>
+      </Nav>
+    </Navbar.Collapse>
+    }
+  </Navbar>
+); //More examples at https://react-bootstrap.github.io/components.html#navbars-mobile-friendly
+
     return (
       <div>
-        <Navbar inverse role="navigation">
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="dashboard">
-                <span className="logoMain">
-                  <span className="logo">
-                    <span className="logoInitial">G</span>eo
-                    <span className="logoInitial">P</span>rofile
-                  </span>
-                </span>
-              </Link>
-            </Navbar.Brand>
-          </Navbar.Header>
-          <Navbar.Collapse>
-            {this.state.loggedIn
-              ? ( <Nav pullRight>
-                    <NavItem>Hello </NavItem>
-                    <NavDropdown title={localStorage.username} className="welcomeName" id="basic-nav-dropdown">
-                      <LinkContainer to="profile">
-                        <MenuItem id="navProfileItem" to="profile" className="navDropItem">Profile</MenuItem>
-                      </LinkContainer>
-                      <MenuItem divider />
-                      <MenuItem ><input type="button" onClick={this.saveCache} className="navCacheButton" value="Cache me here" /></MenuItem>
-                    </NavDropdown>
-                    <NavItem disabled>|</NavItem>                    
-                    <NavItem ><span onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</span></NavItem>
-                  </Nav>)
-              : ( <Nav pullRight>
-                    <LinkContainer to="register">
-                      <NavItem ><span className="glyphicon glyphicon-user"></span> Sign Up</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="login">
-                      <NavItem ><span className="glyphicon glyphicon-log-in"></span> Login</NavItem>
-                    </LinkContainer>
-                  </Nav>)
-            }
-          </Navbar.Collapse>
-        </Navbar>
-
+        {navbarInstance}
         <div className="container">
           {this.props.children}
         </div>
@@ -151,11 +149,11 @@ var App = React.createClass({
 var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
-          <IndexRoute component={Dashboard} />
+          <IndexRoute component={GamesList} />
           <Route name="profile" path="/profile" component={Profile} />
           <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
-          <Route name="dashboard" path="/dashboard" component={Dashboard}/>
+          <Route name="gameslist" path="/dashboard" component={GamesList}/>
           <Route path="#" component={Login} />
         </Route>
       </Router>
