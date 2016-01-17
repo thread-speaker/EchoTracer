@@ -1,5 +1,32 @@
-/* region NavBar */
+/* region general styles */
+.error {
+	color: #bf1515;
+	font-size: 1.8rem;
+}
 
+.button {
+	display: inline-block;
+	height: 3rem;
+	padding: 0 1rem 0;
+	background: #b22222;
+	border-radius: 1.5rem;
+	line-height: 3rem;
+	text-align: center;
+	text-shadow: 1px 1px 0 #444;
+	color: #fff;
+	border-style: solid;
+	border-color: #961d1d;
+	border-width: 0 0.2rem 0.2rem 0;
+}
+
+.button:active {
+	background: #961d1d;
+	border-color: #b22222;
+	color: #dedede;
+}
+/* endregion */
+
+/* region NavBar */
 .logo {
 	font-size: 22px;
 	color: #1ac5ff;
@@ -58,354 +85,48 @@
 	text-align: center;
 	width: 100%;
 }
-
-.navCacheButton {
-	background-color: #e67300;
-	width:220px;
-	height:42px;
-	border-radius:4px;
-	border:none;
-	color:black;
-	font-size:24px;
-	margin-bottom:4px;
-}
-
-	.navCacheButton:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-.buttonDefault {
-	width: auto;
-	text-align: center;
-	font-size: 18px;
-	padding: 4px 8px 4px 8px;
-	margin: 4px;
-	border: none;
-	border-radius: 4px;
-	background-color: #e67300;
-	color: black;
-}
-
-	.buttonDefault:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-.buttonAlt {
-	width: auto;
-	text-align: center;
-	font-size: 18px;
-	padding: 4px 8px 4px 8px;
-	margin: 4px;
-	border: none;
-	border-radius: 4px;
-	background-color: #1ac5ff;
-	color: black;
-}
-	.buttonAlt:hover {
-		background-color: #99e5ff;
-		cursor: pointer;
-	}
-
 /* endregion */
 
-
-/* region Dashboard */
-
-.tag {
+/* region dashboard */
+.gameList {
+	width: 45rem;
+	margin: auto;
+	line-height: 3rem;
 }
 
-.priorityDiv {
-	float:right;
+.gameList > li {
+	height: 3rem;
+	margin-bottom: 1rem;
 }
-
-.priorityChange {
-	margin: 5px;
-	padding: 5px;
-}
-
-	.glyphicon-chevron-up:hover {
-		cursor: pointer;
-		background-color: #ffcc99;
-	}
-
-	.glyphicon-chevron-down:hover {
-		cursor: pointer;
-		background-color: #ffcc99;
-	}
-
-	.glyphicon-remove:hover {
-		cursor: pointer;
-		background-color: #ffcc99;
-	}
-
-.expandable {
-	width:20px;
-	height:20px;
-	border: none;
-	border-radius: 3px;
-	background-color: #e67300;
-	padding-left: 2px;
-	margin-bottom: 10px;
-	margin-right: 10px;
-	float: left;
-	clear: left;
-	position: relative;
-	top:22px;
-}
-
-	.expandable:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-.tagHeader {
-	min-width: 150px;
-	font-size: 30px;
-	font-weight: bold;
-	padding-left: 25px;
-	padding-right: 25px;
-	background-color: #e67300;
-	float: left;
-	border: none;
-	border-radius: 3px;
-	margin-bottom: 15px;
-	margin-top: 10px;
-	text-align: left;
-}
-
-	.tagHeader:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-.tagEntry {
-	width: 95%;
-	font-size: 20px;
-	margin-left: 50px;
-	padding: 0 10px 0 10px;
-	background-color: #1ac5ff;
-	float: left;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	border: none;
-	border-radius: 3px;
-	margin-bottom: 8px;
-	text-align: left;
-}
-
-	.tagEntry:hover {
-		background-color: #99e5ff;
-		cursor: pointer;
-	}
-
-	.tagAuthor{
-		font-weight: bold;
-	}
-
-.dividerBar {
-	width: 95%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 30px;
-	margin-top: 30px;
-	border: solid 1px black;
-	clear: both;
-}
-
-.detailsHeader {
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-
-.detailsAuthor {
-	font-size: 16px;
-	margin-left: 5px;
-}
-
-.detailsBody {
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.detailsMessage {
-	font-size: 16px;
-	margin-left: 20px;
-	margin-bottom: 10px;
-}
-
-.detailsFooter {
-	top:5px;
-	position:relative;
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 5px;
-	display: inline-block;
-	float: left;	
-}
-
-.detailsDate {
-	top:5px;
-	position:relative;
-	font-size: 16px;
-	margin-left: 5px;
-	float: left;	
-}
-
-.modalClose{
-	background-color: #e67300;
-	padding: 4px 8px 4px 8px;
-	border-radius:4px;
-	border:none;
-	font-size:20px;
-	float: right;
-}
-
-	.modalClose:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-.cacheButton {
-	background-color: #e67300;
-	width:350px;
-	float: right;
-	text-align: center;
-	height:55px;
-	border-radius:7px;
-	border:none;
-	color:black;
-	font-size:36px;
-	margin-bottom: 30px;
-}
-
-	.cacheButton:hover {
-		background-color: #ffcc99;
-		cursor: pointer;
-	}
-
-/* endregion*/
+/* endregion */
 
 /* region profile */
 .profileUser {
-	float: left;
 	width: 20rem;
-	margin-right: 0.3rem;
+	margin: auto;
+}
+
+.mapDisplay {
+	width: 75%;
+	height: 35rem;
+	margin: auto;
+	margin-bottom: 5rem;
+}
+
+.echoBtn {
+	display: block;
+	min-width: 25rem;
+	width: 30%;
+	margin: auto;
+	margin-top: 1rem;
 }
 
 .profileHeader {
-	color: #e67300;
+	color: #b22222;
+	text-shadow: 1px 1px 0 #444;
 	text-align: center;
 	display: block;
 	width: 100%;
 	margin: 0;
-}
-
-div.photoLarge {
-	display: inline-block;
-	background: #ccc;
-	width: 20rem;
-	height: 20rem;
-	border-radius: 50%;
-}
-
-.profileListContainer {
-	padding: 10px;
-	margin-bottom: 15px;
-}
-
-.profileList {
-	list-style-type: none;
-	padding: 0px;
-}
-
-.profileList > li {
-	background-color: #1ac5ff;
-	border-radius: 7px;
-	padding: 5px;
-	margin: 5px;
-}
-
-.profileTagName {
-	display: inline-block;
-}
-
-.profileTagMessage {
-	padding-left: 5px;
-	display: inline-block;
-}
-
-.profileAddTag {
-	display: block;
-	width: 50%;
-	margin: auto;
-}
-
-.profileAddTagButton {
-	display: inline-block;
-	background-color: #e67300;
-	padding: 5px;
-	width: 25%;
-	float: right;
-	text-align: center;
-}
-
-.deleteTag {
-	display: inline-block;
-	float: right;
-	padding: 5px;
-	top: -3px;
-	position: relative;
-	border-radius: 5px;
-}
-
-	.deleteTag:hover {
-		cursor: pointer;
-		background-color: #ffcc99;
-	}
-
-.deleteCache {
-	display: inline-block;
-	float: right;
-	padding: 5px;
-	position: relative;
-	border-radius: 5px;
-}
-
-	.deleteCache:hover {
-		cursor: pointer;
-		background-color: #ffcc99;
-	}
-
-.profileCaches {
-	background-color: #1ac5ff;
-	border-radius: 7px;
-	color: black;
-}
-
-.cacheNameInput{
-	width: 100px;
-	margin-right: 20px;
-	padding-left: 5px;
-}
-
-.profileButton {
-	background-color: #e67300;
-	border-radius: 7px;
-	float: left;
-	text-align: center;
-	margin-left: 10px;
-}
-
-.profileButton-blue {
-	background-color: #1ac5ff;
-	border-radius: 7px;
-	float: left;
-	text-align: center;
-	margin-left: 10px;
 }
 /* endregion */

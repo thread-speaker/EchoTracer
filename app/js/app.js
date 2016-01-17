@@ -1,8 +1,9 @@
-import GamesList from "./dashboard";
+import Dashboard from "./dashboard";
 import Profile from "./profile";
 import Register from "./register";
 import Login from "./login";
 import Auth from "./auth";
+import GameSummary from "./game-summary";
 
 import { IndexRoute } from 'react-router'
 
@@ -115,7 +116,7 @@ var App = React.createClass({
     {this.state.loggedIn ?
     <Navbar.Collapse>
       <Nav>
-        <NavItem href="#/gameslist">My games</NavItem>
+        <NavItem href="#/dashboard">My games</NavItem>
       </Nav>
       <Nav pullRight>
         <NavItem>Make Echo</NavItem>
@@ -149,11 +150,12 @@ var App = React.createClass({
 var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
-          <IndexRoute component={GamesList} />
+          <IndexRoute component={Dashboard} />
           <Route name="profile" path="/profile" component={Profile} />
           <Route name="register" path="/register" component={Register} />
           <Route name="login" path="/login" component={Login} />
-          <Route name="gameslist" path="/dashboard" component={GamesList}/>
+          <Route name="dashboard" path="/dashboard" component={Dashboard}/>
+          <Route name="game" path="/game" component={GameSummary}/>
           <Route path="#" component={Login} />
         </Route>
       </Router>

@@ -4,14 +4,52 @@ var Bootstrap = require("react-bootstrap");
 var Link = ReactRouter.Link;
 var Modal = Bootstrap.Modal;
 
-var GamesList = React.createClass({
+import api from "./api";
+import auth from "./auth";
+import GameList from "./game-list";
+
+var Dashboard = React.createClass({
+	getInitialState: function() {
+		return {
+			// the user is logged in
+			loggedIn: auth.loggedIn(),
+			profile: null,
+		};
+	},
+
+	componentDidMount: function() {
+		api.getUserProfile(function(status, user) {
+			if (status) {
+				this.state.profile = user;
+				this.setState(this.state);
+			}
+		}.bind(this));
+	},
+
   	render: function() {
-		return (
-			<div>
-				<p>Games will be displayed in a list here!</p>
-			</div>
-		);
+		if (this.state.loggedIn) {
+			return (
+				<div>
+					{this.state.profile?
+						<div>
+							<GameList user={this.state.profile} />
+							<div className="button">game search</div>
+							<div className="button">create game</div>
+						</div>
+					:
+						<p>"loading..."</p>
+					}
+				</div>
+			);
+		}
+		else {
+			return (
+				<div>
+					<Link to="login" className="btn btn-warning">Login</Link> or <Link to="register" className="btn btn-default">Register</Link>
+				</div>
+			);
+		}
 	}
 });
 
-export default GamesList;
+export default Dashboard;
