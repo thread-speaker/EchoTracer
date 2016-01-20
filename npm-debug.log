@@ -1,0 +1,258 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-dom' ]
+2 info using npm@2.14.12
+3 info using node@v4.2.4
+4 verbose install initial load of /home/parallels/source/EchoTracer/package.json
+5 warn package.json Echo-Tracer@0.0.0 No repository field.
+6 warn package.json Echo-Tracer@0.0.0 license should be a valid SPDX license expression
+7 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/babel-core/package.json
+8 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/babel-loader/package.json
+9 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/bcrypt/package.json
+10 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/body-parser/package.json
+11 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/bootstrap/package.json
+12 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/css-loader/package.json
+13 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/express/package.json
+14 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/file-loader/package.json
+15 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/firebase/package.json
+16 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/google-map-react/package.json
+17 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/history/package.json
+18 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/jquery/package.json
+19 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/jsonwebtoken/package.json
+20 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react/package.json
+21 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react-bootstrap/package.json
+22 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react-dom/package.json
+23 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react-gmaps/package.json
+24 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react-router/package.json
+25 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/react-router-bootstrap/package.json
+26 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/reactify/package.json
+27 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/style-loader/package.json
+28 verbose installManyTop reading scoped package data from /home/parallels/source/EchoTracer/node_modules/webpack/package.json
+29 info package.json firebase@2.3.2 No license field.
+30 info package.json jquery@2.1.4 No license field.
+31 verbose readDependencies loading dependencies from /home/parallels/source/EchoTracer/package.json
+32 verbose install react-dom is installed as 0.14.3
+33 silly cache add args [ 'react-dom@^0.14.2', null ]
+34 verbose cache add spec react-dom@^0.14.2
+35 silly cache add parsed spec Result {
+35 silly cache add   raw: 'react-dom@^0.14.2',
+35 silly cache add   scope: null,
+35 silly cache add   name: 'react-dom',
+35 silly cache add   rawSpec: '^0.14.2',
+35 silly cache add   spec: '>=0.14.2 <0.15.0',
+35 silly cache add   type: 'range' }
+36 silly addNamed react-dom@>=0.14.2 <0.15.0
+37 verbose addNamed ">=0.14.2 <0.15.0" is a valid semver range for react-dom
+38 silly addNameRange { name: 'react-dom', range: '>=0.14.2 <0.15.0', hasData: false }
+39 silly mapToRegistry name react-dom
+40 silly mapToRegistry using default registry
+41 silly mapToRegistry registry https://registry.npmjs.org/
+42 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+43 verbose addNameRange registry:https://registry.npmjs.org/react-dom not in flight; fetching
+44 verbose request uri https://registry.npmjs.org/react-dom
+45 verbose request no auth needed
+46 info attempt registry request try #1 at 4:53:15 PM
+47 verbose request id 12a11e5ffc93264c
+48 verbose etag "CTF9Z61Y3DNJ1FIROCZB19G56"
+49 http request GET https://registry.npmjs.org/react-dom
+50 http 200 https://registry.npmjs.org/react-dom
+51 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+51 verbose headers   etag: '"4P6RMJ035S3KIP9V9JMK4524Y"',
+51 verbose headers   'content-type': 'application/json',
+51 verbose headers   'cache-control': 'max-age=300',
+51 verbose headers   'content-length': '14613',
+51 verbose headers   'accept-ranges': 'bytes',
+51 verbose headers   date: 'Tue, 19 Jan 2016 23:53:15 GMT',
+51 verbose headers   via: '1.1 varnish',
+51 verbose headers   age: '0',
+51 verbose headers   connection: 'keep-alive',
+51 verbose headers   'x-served-by': 'cache-ord1733-ORD',
+51 verbose headers   'x-cache': 'HIT',
+51 verbose headers   'x-cache-hits': '1',
+51 verbose headers   'x-timer': 'S1453247595.837497,VS0,VE63',
+51 verbose headers   vary: 'Accept' }
+52 silly get cb [ 200,
+52 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+52 silly get     etag: '"4P6RMJ035S3KIP9V9JMK4524Y"',
+52 silly get     'content-type': 'application/json',
+52 silly get     'cache-control': 'max-age=300',
+52 silly get     'content-length': '14613',
+52 silly get     'accept-ranges': 'bytes',
+52 silly get     date: 'Tue, 19 Jan 2016 23:53:15 GMT',
+52 silly get     via: '1.1 varnish',
+52 silly get     age: '0',
+52 silly get     connection: 'keep-alive',
+52 silly get     'x-served-by': 'cache-ord1733-ORD',
+52 silly get     'x-cache': 'HIT',
+52 silly get     'x-cache-hits': '1',
+52 silly get     'x-timer': 'S1453247595.837497,VS0,VE63',
+52 silly get     vary: 'Accept' } ]
+53 verbose get saving react-dom to /home/parallels/.npm/registry.npmjs.org/react-dom/.cache.json
+54 silly addNameRange number 2 { name: 'react-dom', range: '>=0.14.2 <0.15.0', hasData: true }
+55 silly addNameRange versions [ 'react-dom',
+55 silly addNameRange   [ '0.1.0',
+55 silly addNameRange     '0.14.0-beta1',
+55 silly addNameRange     '0.14.0-beta2',
+55 silly addNameRange     '0.14.0-beta3',
+55 silly addNameRange     '0.14.0-rc1',
+55 silly addNameRange     '0.14.0',
+55 silly addNameRange     '0.14.1',
+55 silly addNameRange     '0.14.2',
+55 silly addNameRange     '0.14.3',
+55 silly addNameRange     '0.14.4',
+55 silly addNameRange     '0.14.5',
+55 silly addNameRange     '0.14.6' ] ]
+56 silly addNamed react-dom@0.14.6
+57 verbose addNamed "0.14.6" is a plain semver version for react-dom
+58 silly mapToRegistry name react-dom
+59 silly mapToRegistry using default registry
+60 silly mapToRegistry registry https://registry.npmjs.org/
+61 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+62 verbose addRemoteTarball https://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz not in flight; adding
+63 verbose addRemoteTarball [ 'https://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz',
+63 verbose addRemoteTarball   '46d4e3243884f277e89ce8759131e8a16ac23e65' ]
+64 info retry fetch attempt 1 at 4:53:16 PM
+65 info attempt registry request try #1 at 4:53:16 PM
+66 http fetch GET https://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz
+67 http fetch 200 https://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz
+68 silly fetchAndShaCheck shasum 46d4e3243884f277e89ce8759131e8a16ac23e65
+69 verbose addTmpTarball /tmp/npm-17445-6d2526f8/registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz not in flight; adding
+70 verbose addTmpTarball already have metadata; skipping unpack for react-dom@0.14.6
+71 silly cache afterAdd react-dom@0.14.6
+72 verbose afterAdd /home/parallels/.npm/react-dom/0.14.6/package/package.json not in flight; writing
+73 verbose afterAdd /home/parallels/.npm/react-dom/0.14.6/package/package.json written
+74 silly install resolved [ { name: 'react-dom',
+74 silly install resolved     version: '0.14.6',
+74 silly install resolved     description: 'React package for working with the DOM.',
+74 silly install resolved     main: 'index.js',
+74 silly install resolved     repository:
+74 silly install resolved      { type: 'git',
+74 silly install resolved        url: 'git+https://github.com/facebook/react.git' },
+74 silly install resolved     keywords: [ 'react' ],
+74 silly install resolved     license: 'BSD-3-Clause',
+74 silly install resolved     bugs: { url: 'https://github.com/facebook/react/issues' },
+74 silly install resolved     homepage: 'https://github.com/facebook/react/tree/master/npm-react-dom',
+74 silly install resolved     peerDependencies: { react: '^0.14.6' },
+74 silly install resolved     scripts: { start: 'node server.js' },
+74 silly install resolved     _id: 'react-dom@0.14.6',
+74 silly install resolved     _shasum: '46d4e3243884f277e89ce8759131e8a16ac23e65',
+74 silly install resolved     _resolved: 'https://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz',
+74 silly install resolved     _from: 'react-dom@>=0.14.2 <0.15.0',
+74 silly install resolved     _npmVersion: '2.14.15',
+74 silly install resolved     _nodeVersion: '4.2.2',
+74 silly install resolved     _npmUser: { name: 'zpao', email: 'paul@oshannessy.com' },
+74 silly install resolved     maintainers: [ [Object], [Object] ],
+74 silly install resolved     dist:
+74 silly install resolved      { shasum: '46d4e3243884f277e89ce8759131e8a16ac23e65',
+74 silly install resolved        tarball: 'http://registry.npmjs.org/react-dom/-/react-dom-0.14.6.tgz' },
+74 silly install resolved     directories: {} } ]
+75 info install react-dom@0.14.6 into /home/parallels/source/EchoTracer
+76 info installOne react-dom@0.14.6
+77 verbose installOne of react-dom to /home/parallels/source/EchoTracer not in flight; installing
+78 verbose lock using /home/parallels/.npm/_locks/react-dom-8ea6281721ece097.lock for /home/parallels/source/EchoTracer/node_modules/react-dom
+79 silly install write writing react-dom 0.14.6 to /home/parallels/source/EchoTracer/node_modules/react-dom
+80 verbose unbuild node_modules/react-dom
+81 info preuninstall react-dom@0.14.3
+82 info uninstall react-dom@0.14.3
+83 verbose unbuild rmStuff react-dom@0.14.3 from /home/parallels/source/EchoTracer/node_modules
+84 info postuninstall react-dom@0.14.3
+85 silly gentlyRm /home/parallels/source/EchoTracer/node_modules/react-dom is being purged from base /home/parallels/source/EchoTracer
+86 verbose gentlyRm don't care about contents; nuking /home/parallels/source/EchoTracer/node_modules/react-dom
+87 silly vacuum-fs purging /home/parallels/source/EchoTracer/node_modules/react-dom
+88 silly vacuum-fs quitting because other entries in /home/parallels/source/EchoTracer/node_modules
+89 verbose tar unpack /home/parallels/.npm/react-dom/0.14.6/package.tgz
+90 verbose tar unpacking to /home/parallels/source/EchoTracer/node_modules/react-dom
+91 silly gentlyRm /home/parallels/source/EchoTracer/node_modules/react-dom is being purged
+92 verbose gentlyRm don't care about contents; nuking /home/parallels/source/EchoTracer/node_modules/react-dom
+93 silly gunzTarPerm modes [ '775', '664' ]
+94 silly gunzTarPerm extractEntry package.json
+95 silly gunzTarPerm modified mode [ 'package.json', 420, 436 ]
+96 silly gunzTarPerm extractEntry README.md
+97 silly gunzTarPerm modified mode [ 'README.md', 420, 436 ]
+98 silly gunzTarPerm extractEntry LICENSE
+99 silly gunzTarPerm modified mode [ 'LICENSE', 420, 436 ]
+100 silly gunzTarPerm extractEntry index.js
+101 silly gunzTarPerm modified mode [ 'index.js', 420, 436 ]
+102 silly gunzTarPerm extractEntry server.js
+103 silly gunzTarPerm modified mode [ 'server.js', 420, 436 ]
+104 silly gunzTarPerm extractEntry PATENTS
+105 silly gunzTarPerm modified mode [ 'PATENTS', 420, 436 ]
+106 silly gunzTarPerm extractEntry dist/react-dom-server.js
+107 silly gunzTarPerm modified mode [ 'dist/react-dom-server.js', 420, 436 ]
+108 silly gunzTarPerm extractEntry dist/react-dom-server.min.js
+109 silly gunzTarPerm modified mode [ 'dist/react-dom-server.min.js', 420, 436 ]
+110 silly gunzTarPerm extractEntry dist/react-dom.js
+111 silly gunzTarPerm modified mode [ 'dist/react-dom.js', 420, 436 ]
+112 silly gunzTarPerm extractEntry dist/react-dom.min.js
+113 silly gunzTarPerm modified mode [ 'dist/react-dom.min.js', 420, 436 ]
+114 verbose write writing to /home/parallels/source/EchoTracer/node_modules/react-dom/package.json
+115 info preinstall react-dom@0.14.6
+116 verbose readDependencies loading dependencies from /home/parallels/source/EchoTracer/node_modules/react-dom/package.json
+117 silly prepareForInstallMany adding react@^0.14.6 from react-dom peerDependencies
+118 warn peerDependencies The peer dependency react@^0.14.6 included from react-dom will no
+119 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+120 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+121 verbose readDependencies loading dependencies from /home/parallels/source/EchoTracer/node_modules/react-dom/package.json
+122 silly install resolved []
+123 verbose about to build /home/parallels/source/EchoTracer/node_modules/react-dom
+124 info build /home/parallels/source/EchoTracer/node_modules/react-dom
+125 info linkStuff react-dom@0.14.6
+126 silly linkStuff react-dom@0.14.6 has /home/parallels/source/EchoTracer/node_modules as its parent node_modules
+127 verbose linkBins react-dom@0.14.6
+128 verbose linkMans react-dom@0.14.6
+129 verbose rebuildBundles react-dom@0.14.6
+130 info install react-dom@0.14.6
+131 info postinstall react-dom@0.14.6
+132 verbose readDependencies loading dependencies from /home/parallels/source/EchoTracer/package.json
+133 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/babel-core/package.json
+134 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/babel-loader/package.json
+135 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/bcrypt/package.json
+136 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/body-parser/package.json
+137 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/bootstrap/package.json
+138 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/css-loader/package.json
+139 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/express/package.json
+140 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/file-loader/package.json
+141 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/firebase/package.json
+142 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/google-map-react/package.json
+143 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/history/package.json
+144 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/jquery/package.json
+145 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/jsonwebtoken/package.json
+146 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react/package.json
+147 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react-bootstrap/package.json
+148 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react-dom/package.json
+149 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react-gmaps/package.json
+150 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react-router/package.json
+151 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/react-router-bootstrap/package.json
+152 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/reactify/package.json
+153 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/style-loader/package.json
+154 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/webpack/package.json
+155 verbose targetResolver reading package data from /home/parallels/source/EchoTracer/node_modules/.bin/webpack/package.json
+156 verbose already installed skipping react@^0.14.6 /home/parallels/source/EchoTracer
+157 silly install resolved []
+158 verbose unlock done using /home/parallels/.npm/_locks/react-dom-8ea6281721ece097.lock for /home/parallels/source/EchoTracer/node_modules/react-dom
+159 verbose validateInstall loading /home/parallels/source/EchoTracer/package.json for validation
+160 verbose stack Error: The package react@0.14.3 does not satisfy its siblings' peerDependencies requirements!
+160 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:125:32
+160 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:268:7
+160 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+160 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+160 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+160 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+160 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+160 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+160 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+160 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+161 verbose cwd /home/parallels/source/EchoTracer
+162 error Linux 3.13.0-76-generic
+163 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "--save" "react-dom"
+164 error node v4.2.4
+165 error npm  v2.14.12
+166 error code EPEERINVALID
+167 error peerinvalid The package react@0.14.3 does not satisfy its siblings' peerDependencies requirements!
+167 error peerinvalid Peer react-bootstrap@0.28.1 wants react@>=0.14.0
+167 error peerinvalid Peer react-dom@0.14.6 wants react@^0.14.6
+167 error peerinvalid Peer react-router-bootstrap@0.19.3 wants react@>=0.13.0
+168 verbose exit [ 1, true ]
