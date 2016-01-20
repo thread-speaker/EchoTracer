@@ -87,7 +87,7 @@
 }
 /* endregion */
 
-/* region dashboard */
+/* region GameList */
 .gameList {
 	width: 45rem;
 	margin: auto;
@@ -100,25 +100,20 @@
 }
 /* endregion */
 
-/* region profile */
-.profileUser {
-	width: 20rem;
-	margin: auto;
-}
-
-.mapDisplay {
-	width: 75%;
-	height: 35rem;
-	margin: auto;
-	margin-bottom: 5rem;
-}
-
+/* region GameMap */
 .echoBtn {
 	display: block;
 	min-width: 25rem;
 	width: 30%;
 	margin: auto;
 	margin-top: 1rem;
+}
+/* endregion */
+
+/* region Profile */
+.profileUser {
+	width: 20rem;
+	margin: auto;
 }
 
 .profileHeader {
@@ -128,5 +123,12 @@
 	display: block;
 	width: 100%;
 	margin: 0;
+}
+
+.mapDisplay {
+	width: 75%;
+	height: 35rem;
+	margin: auto;
+	margin-bottom: 5rem;
 }
 /* endregion */

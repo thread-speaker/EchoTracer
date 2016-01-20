@@ -4,6 +4,7 @@ import Register from "./register";
 import Login from "./login";
 import Auth from "./auth";
 import GameSummary from "./game-summary";
+import CreateGame from "./create-game";
 
 import { IndexRoute } from 'react-router'
 
@@ -156,6 +157,7 @@ var routes = (
           <Route name="login" path="/login" component={Login} />
           <Route name="dashboard" path="/dashboard" component={Dashboard}/>
           <Route name="game" path="/game" component={GameSummary}/>
+          <Route name="create" path="/create" component={CreateGame}/>
           <Route path="#" component={Login} />
         </Route>
       </Router>

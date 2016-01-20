@@ -1,15 +1,26 @@
 var React = require('react');
-var auth = require('./auth.js');
 var api = require('./api.js');
 
 import GameMap from './game-map';
 
 var GameSummary = React.createClass({
 	getInitialState: function() {
-		var { game, ...context } = this.context.router.getCurrentQuery();
 		return {
-			ready: true,
+			// the user is logged in
+			loggedIn: auth.loggedIn(),
+			game: null,
 		};
+	},
+
+	componentDidMount: function() {
+		var { gameId, ...context } = this.context.router.getCurrentQuery();
+
+		api.getGame(gameId, function(status, game) {
+			if (status) {
+				this.state.game = game;
+				this.setState(this.state);
+			}
+		}.bind(this));
 	},
 
 	render: function() {

@@ -34,7 +34,7 @@ var Dashboard = React.createClass({
 						<div>
 							<GameList user={this.state.profile} />
 							<div className="button">game search</div>
-							<div className="button">create game</div>
+							<Link to="create"><div className="button">create game</div></Link>
 						</div>
 					:
 						<p>"loading..."</p>

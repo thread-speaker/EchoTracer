@@ -1,5 +1,6 @@
 var app = require('./express.js');
 var User = require('./user.js');
+var Game = require('./game.js');
 
 // setup body parser
 var bodyParser = require('body-parser');
@@ -55,25 +56,29 @@ app.get('/api/profile', function (req,res) {
 	});
 });
 
-/*
-// get a profile
-app.get('/api/profile/user/:user_id', function (req,res) {
+// get a game
+app.get('/api/game/:uid', function (req,res) {
   // validate the supplied token
-  user = User.verifyToken(req.headers.authorization, function(user) {
+  User.verifyToken(req.headers.authorization, function(user) {
     if (user) {
       // if the token is valid, then find the requested profile
-      Profile.find({user:user_id}, function(err, profile) {
-	if (err) {
-	  res.sendStatus(403);
-	  return;
-	}
-        // get the profile if it belongs to the user, otherwise return an error
-        if (profile.user != user) {
+      Game.find(uid, function(err, game) {
+      	if (err) {
+      	  res.sendStatus(403);
+      	  return;
+      	}
+        // TODO: get the game if the user is a player in it, or is the owner
+        if (false) {
           res.sendStatus(403);
-	  return;
+          return;
         }
-        // return value is the profile as JSON
-        res.json({profile:profile});
+
+        //If the user isn't the owner, hide some information
+        if (user.uid != game.creator) {
+          game.joinCode = null;
+          game.created = null;
+        }
+        res.json({game:game});
       });
     } else {
       res.sendStatus(403);
@@ -81,6 +86,29 @@ app.get('/api/profile/user/:user_id', function (req,res) {
   });
 });
 
+app.post('/api/game', function (req, res) {
+  User.verifyToken(req.headers.authorization, function (user) {
+    if (user) {
+      var newGame = req.body.game;
+      newGame.joinCode = randomString(4);
+      newGame.creator = user.uid;
+      newGame.created = Date.now();
+      newGame.state = "Waiting";
+      Game.create(newGame, function (err, created) {
+        if (err) {
+          res.sendStatus(403);
+        }
+        else {
+          res.json({saved:true, created:created});
+        }
+      });
+    }
+    else {
+      res.sendStatus(403);
+    }
+  });
+});
+/*
 // get all profiles, for searching
 app.get('/api/profile/all', function (req,res) {
   // validate the supplied token
@@ -131,3 +159,10 @@ app.put('/api/profile', function (req,res) {
     }
   });
 });*/
+
+const chars = "346789ABCDEFGHJMNPQRTUVWXY";
+function randomString(length) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}

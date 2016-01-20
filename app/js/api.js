@@ -24,18 +24,42 @@ var api = {
       }.bind(this)
     });
   },
-/*
-  //Get all the profiles
-  getAllProfiles: function(cb) {
+
+  createGame: function(game, cb) {
+    var url = "/api/game";
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        game: game
+      }),
+      type: 'POST',
+      headers: {'Authorization': localStorage.token},
+      success: function(res) {
+        if (cb) {
+          cb(true, res);
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        delete localStorage.token;
+        if(cb)
+          cb(false, status);
+      }.bind(this)
+    });
+  },
+
+  //Get a given game
+  getGame: function(uid, cb) {
     // submit request to server
-    var url = "/api/profile/all";
+    var url = "/api/game/" + uid;
     $.ajax({
       url: url,
       dataType: 'json',
       type: 'GET',
       headers: {'Authorization': localStorage.token},
       success: function(res) {
-        // on success, store a login token
+        
         if (cb)
           cb(true, res);
       }.bind(this),
@@ -47,7 +71,7 @@ var api = {
       }.bind(this)
     });
   },
-
+/*
   // update a profile, call the callback when complete
   updateProfile: function(item, cb) {
     var url = "/api/profile/";

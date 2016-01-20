@@ -23,6 +23,7 @@ var User = {
 				}
 			} else {
 				userRef.child(userData.uid).set({
+					uid: userData.uid,
 					email: email,
 					username: username,
 				});
@@ -90,6 +91,31 @@ var User = {
 				});
 			});
 		});
+	},
+
+	find: function(uid, cb) {
+		var found = false;
+		userRef.child(uid).once("value", function(data) {
+			found = true;
+			if (cb) {
+				var result = data.val();
+				result.uid = data.key();
+				cb (null, result);
+			}
+		});
+		if (!found) {
+			if (cb) {
+				cb("Something's wrong!", null);
+			}
+		}
+	},
+
+	update: function(data, cb) {
+		var result = userRef.child(data.uid).update(data);
+		if (cb) {
+			cb(false, result.val());
+			return;
+		}
 	},
 };
 
